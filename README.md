@@ -9,4 +9,3 @@ Features of the board and applications associated with it:
 - Alarm implemented and configurable to give alert on LCD when a certain value
   of temperature or luminosity is reached;
 - Shell script interface with board to send commands via computer;
-
