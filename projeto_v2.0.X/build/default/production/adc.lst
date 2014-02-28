@@ -1,0 +1,1006 @@
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.3.0 #8604 (May 11 2013) (Linux)
+                      00004 ; This file was generated Thu Dec  5 11:22:26 2013
+                      00005 ;--------------------------------------------------------
+                      00006 ; PIC16 port for the Microchip 16-bit core micros
+                      00007 ;--------------------------------------------------------
+                      00008         list    p=18f4550
+                      00009         radix   dec
+                      00010 
+                      00011 
+                      00012 ;--------------------------------------------------------
+                      00013 ; public variables in this module
+                      00014 ;--------------------------------------------------------
+  0000                00015         global  _inicializa_ad
+  0000                00016         global  _le_temp
+  0000                00017         global  _le_lumi
+  0000                00018         global  _delay
+                      00019 
+                      00020 ;--------------------------------------------------------
+                      00021 ; extern variables in this module
+                      00022 ;--------------------------------------------------------
+  0000                00023         extern  _SPPCFGbits
+  0000                00024         extern  _SPPEPSbits
+  0000                00025         extern  _SPPCONbits
+  0000                00026         extern  _UFRMLbits
+  0000                00027         extern  _UFRMHbits
+  0000                00028         extern  _UIRbits
+  0000                00029         extern  _UIEbits
+  0000                00030         extern  _UEIRbits
+  0000                00031         extern  _UEIEbits
+  0000                00032         extern  _USTATbits
+  0000                00033         extern  _UCONbits
+  0000                00034         extern  _UADDRbits
+  0000                00035         extern  _UCFGbits
+  0000                00036         extern  _UEP0bits
+  0000                00037         extern  _UEP1bits
+  0000                00038         extern  _UEP2bits
+  0000                00039         extern  _UEP3bits
+  0000                00040         extern  _UEP4bits
+  0000                00041         extern  _UEP5bits
+  0000                00042         extern  _UEP6bits
+  0000                00043         extern  _UEP7bits
+  0000                00044         extern  _UEP8bits
+  0000                00045         extern  _UEP9bits
+  0000                00046         extern  _UEP10bits
+  0000                00047         extern  _UEP11bits
+  0000                00048         extern  _UEP12bits
+  0000                00049         extern  _UEP13bits
+  0000                00050         extern  _UEP14bits
+  0000                00051         extern  _UEP15bits
+  0000                00052         extern  _PORTAbits
+  0000                00053         extern  _PORTBbits
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00054         extern  _PORTCbits
+  0000                00055         extern  _PORTDbits
+  0000                00056         extern  _PORTEbits
+  0000                00057         extern  _LATAbits
+  0000                00058         extern  _LATBbits
+  0000                00059         extern  _LATCbits
+  0000                00060         extern  _LATDbits
+  0000                00061         extern  _LATEbits
+  0000                00062         extern  _DDRAbits
+  0000                00063         extern  _TRISAbits
+  0000                00064         extern  _DDRBbits
+  0000                00065         extern  _TRISBbits
+  0000                00066         extern  _DDRCbits
+  0000                00067         extern  _TRISCbits
+  0000                00068         extern  _DDRDbits
+  0000                00069         extern  _TRISDbits
+  0000                00070         extern  _DDREbits
+  0000                00071         extern  _TRISEbits
+  0000                00072         extern  _OSCTUNEbits
+  0000                00073         extern  _PIE1bits
+  0000                00074         extern  _PIR1bits
+  0000                00075         extern  _IPR1bits
+  0000                00076         extern  _PIE2bits
+  0000                00077         extern  _PIR2bits
+  0000                00078         extern  _IPR2bits
+  0000                00079         extern  _EECON1bits
+  0000                00080         extern  _RCSTAbits
+  0000                00081         extern  _TXSTAbits
+  0000                00082         extern  _T3CONbits
+  0000                00083         extern  _CMCONbits
+  0000                00084         extern  _CVRCONbits
+  0000                00085         extern  _CCP1ASbits
+  0000                00086         extern  _ECCP1ASbits
+  0000                00087         extern  _CCP1DELbits
+  0000                00088         extern  _ECCP1DELbits
+  0000                00089         extern  _BAUDCONbits
+  0000                00090         extern  _BAUDCTLbits
+  0000                00091         extern  _CCP2CONbits
+  0000                00092         extern  _CCP1CONbits
+  0000                00093         extern  _ECCP1CONbits
+  0000                00094         extern  _ADCON2bits
+  0000                00095         extern  _ADCON1bits
+  0000                00096         extern  _ADCON0bits
+  0000                00097         extern  _SSPCON2bits
+  0000                00098         extern  _SSPCON1bits
+  0000                00099         extern  _SSPSTATbits
+  0000                00100         extern  _T2CONbits
+  0000                00101         extern  _T1CONbits
+  0000                00102         extern  _RCONbits
+  0000                00103         extern  _WDTCONbits
+  0000                00104         extern  _HLVDCONbits
+  0000                00105         extern  _LVDCONbits
+  0000                00106         extern  _OSCCONbits
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00107         extern  _T0CONbits
+  0000                00108         extern  _STATUSbits
+  0000                00109         extern  _INTCON3bits
+  0000                00110         extern  _INTCON2bits
+  0000                00111         extern  _INTCONbits
+  0000                00112         extern  _STKPTRbits
+  0000                00113         extern  _hab_sensor
+  0000                00114         extern  _SPPDATA
+  0000                00115         extern  _SPPCFG
+  0000                00116         extern  _SPPEPS
+  0000                00117         extern  _SPPCON
+  0000                00118         extern  _UFRM
+  0000                00119         extern  _UFRML
+  0000                00120         extern  _UFRMH
+  0000                00121         extern  _UIR
+  0000                00122         extern  _UIE
+  0000                00123         extern  _UEIR
+  0000                00124         extern  _UEIE
+  0000                00125         extern  _USTAT
+  0000                00126         extern  _UCON
+  0000                00127         extern  _UADDR
+  0000                00128         extern  _UCFG
+  0000                00129         extern  _UEP0
+  0000                00130         extern  _UEP1
+  0000                00131         extern  _UEP2
+  0000                00132         extern  _UEP3
+  0000                00133         extern  _UEP4
+  0000                00134         extern  _UEP5
+  0000                00135         extern  _UEP6
+  0000                00136         extern  _UEP7
+  0000                00137         extern  _UEP8
+  0000                00138         extern  _UEP9
+  0000                00139         extern  _UEP10
+  0000                00140         extern  _UEP11
+  0000                00141         extern  _UEP12
+  0000                00142         extern  _UEP13
+  0000                00143         extern  _UEP14
+  0000                00144         extern  _UEP15
+  0000                00145         extern  _PORTA
+  0000                00146         extern  _PORTB
+  0000                00147         extern  _PORTC
+  0000                00148         extern  _PORTD
+  0000                00149         extern  _PORTE
+  0000                00150         extern  _LATA
+  0000                00151         extern  _LATB
+  0000                00152         extern  _LATC
+  0000                00153         extern  _LATD
+  0000                00154         extern  _LATE
+  0000                00155         extern  _DDRA
+  0000                00156         extern  _TRISA
+  0000                00157         extern  _DDRB
+  0000                00158         extern  _TRISB
+  0000                00159         extern  _DDRC
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00160         extern  _TRISC
+  0000                00161         extern  _DDRD
+  0000                00162         extern  _TRISD
+  0000                00163         extern  _DDRE
+  0000                00164         extern  _TRISE
+  0000                00165         extern  _OSCTUNE
+  0000                00166         extern  _PIE1
+  0000                00167         extern  _PIR1
+  0000                00168         extern  _IPR1
+  0000                00169         extern  _PIE2
+  0000                00170         extern  _PIR2
+  0000                00171         extern  _IPR2
+  0000                00172         extern  _EECON1
+  0000                00173         extern  _EECON2
+  0000                00174         extern  _EEDATA
+  0000                00175         extern  _EEADR
+  0000                00176         extern  _RCSTA
+  0000                00177         extern  _TXSTA
+  0000                00178         extern  _TXREG
+  0000                00179         extern  _RCREG
+  0000                00180         extern  _SPBRG
+  0000                00181         extern  _SPBRGH
+  0000                00182         extern  _T3CON
+  0000                00183         extern  _TMR3
+  0000                00184         extern  _TMR3L
+  0000                00185         extern  _TMR3H
+  0000                00186         extern  _CMCON
+  0000                00187         extern  _CVRCON
+  0000                00188         extern  _CCP1AS
+  0000                00189         extern  _ECCP1AS
+  0000                00190         extern  _CCP1DEL
+  0000                00191         extern  _ECCP1DEL
+  0000                00192         extern  _BAUDCON
+  0000                00193         extern  _BAUDCTL
+  0000                00194         extern  _CCP2CON
+  0000                00195         extern  _CCPR2
+  0000                00196         extern  _CCPR2L
+  0000                00197         extern  _CCPR2H
+  0000                00198         extern  _CCP1CON
+  0000                00199         extern  _ECCP1CON
+  0000                00200         extern  _CCPR1
+  0000                00201         extern  _CCPR1L
+  0000                00202         extern  _CCPR1H
+  0000                00203         extern  _ADCON2
+  0000                00204         extern  _ADCON1
+  0000                00205         extern  _ADCON0
+  0000                00206         extern  _ADRES
+  0000                00207         extern  _ADRESL
+  0000                00208         extern  _ADRESH
+  0000                00209         extern  _SSPCON2
+  0000                00210         extern  _SSPCON1
+  0000                00211         extern  _SSPSTAT
+  0000                00212         extern  _SSPADD
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00213         extern  _SSPBUF
+  0000                00214         extern  _T2CON
+  0000                00215         extern  _PR2
+  0000                00216         extern  _TMR2
+  0000                00217         extern  _T1CON
+  0000                00218         extern  _TMR1
+  0000                00219         extern  _TMR1L
+  0000                00220         extern  _TMR1H
+  0000                00221         extern  _RCON
+  0000                00222         extern  _WDTCON
+  0000                00223         extern  _HLVDCON
+  0000                00224         extern  _LVDCON
+  0000                00225         extern  _OSCCON
+  0000                00226         extern  _T0CON
+  0000                00227         extern  _TMR0
+  0000                00228         extern  _TMR0L
+  0000                00229         extern  _TMR0H
+  0000                00230         extern  _STATUS
+  0000                00231         extern  _FSR2L
+  0000                00232         extern  _FSR2H
+  0000                00233         extern  _PLUSW2
+  0000                00234         extern  _PREINC2
+  0000                00235         extern  _POSTDEC2
+  0000                00236         extern  _POSTINC2
+  0000                00237         extern  _INDF2
+  0000                00238         extern  _BSR
+  0000                00239         extern  _FSR1L
+  0000                00240         extern  _FSR1H
+  0000                00241         extern  _PLUSW1
+  0000                00242         extern  _PREINC1
+  0000                00243         extern  _POSTDEC1
+  0000                00244         extern  _POSTINC1
+  0000                00245         extern  _INDF1
+  0000                00246         extern  _WREG
+  0000                00247         extern  _FSR0L
+  0000                00248         extern  _FSR0H
+  0000                00249         extern  _PLUSW0
+  0000                00250         extern  _PREINC0
+  0000                00251         extern  _POSTDEC0
+  0000                00252         extern  _POSTINC0
+  0000                00253         extern  _INDF0
+  0000                00254         extern  _INTCON3
+  0000                00255         extern  _INTCON2
+  0000                00256         extern  _INTCON
+  0000                00257         extern  _PROD
+  0000                00258         extern  _PRODL
+  0000                00259         extern  _PRODH
+  0000                00260         extern  _TABLAT
+  0000                00261         extern  _TBLPTR
+  0000                00262         extern  _TBLPTRL
+  0000                00263         extern  _TBLPTRH
+  0000                00264         extern  _TBLPTRU
+  0000                00265         extern  _PC
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00266         extern  _PCL
+  0000                00267         extern  _PCLATH
+  0000                00268         extern  _PCLATU
+  0000                00269         extern  _STKPTR
+  0000                00270         extern  _TOS
+  0000                00271         extern  _TOSL
+  0000                00272         extern  _TOSH
+  0000                00273         extern  _TOSU
+  0000                00274         extern  __mullong
+  0000                00275         extern  __divslong
+                      00276 
+                      00277 ;--------------------------------------------------------
+                      00278 ;       Equates to used internal registers
+                      00279 ;--------------------------------------------------------
+  00000FD8            00280 STATUS  equ     0xfd8
+  00000FE8            00281 WREG    equ     0xfe8
+  00000FE9            00282 FSR0L   equ     0xfe9
+  00000FE1            00283 FSR1L   equ     0xfe1
+  00000FD9            00284 FSR2L   equ     0xfd9
+  00000FE5            00285 POSTDEC1        equ     0xfe5
+  00000FE4            00286 PREINC1 equ     0xfe4
+  00000FF3            00287 PRODL   equ     0xff3
+  00000FF4            00288 PRODH   equ     0xff4
+                      00289 
+                      00290 
+                      00291         idata
+000000 00             00292 _le_temp_flag_1_9       db      0x00
+000001 00 00          00293 _le_temp_ret_1_9        db      0x00, 0x00
+000003 00             00294 _le_lumi_flag_1_14      db      0x00
+000004 00 00          00295 _le_lumi_tmp_1_14       db      0x00, 0x00
+                      00296 
+                      00297 
+                      00298 ; Internal registers
+                      00299 .registers      udata_ovr       0x0000
+000000                00300 r0x00   res     1
+000001                00301 r0x01   res     1
+000002                00302 r0x02   res     1
+000003                00303 r0x03   res     1
+000004                00304 r0x04   res     1
+000005                00305 r0x05   res     1
+                      00306 
+                      00307 ;--------------------------------------------------------
+                      00308 ; global & static initialisations
+                      00309 ;--------------------------------------------------------
+                      00310 ; I code from now on!
+                      00311 ; ; Starting pCode block
+                      00312 S_adc__le_lumi  code
+000000                00313 _le_lumi:
+                      00314 ;       .line   52; adc.c       unsigned int le_lumi(void)
+000000 CFD9 FFE5      00315         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00316         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00317         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00318         MOVFF   r0x01, POSTDEC1
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000010 C??? F???      00319         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00320         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00321         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      00322         MOVFF   r0x05, POSTDEC1
+                      00323 ;       .line   56; adc.c       unsigned int ret = 0;
+000020 6A??           00324         CLRF    r0x00
+000022 6A??           00325         CLRF    r0x01
+000024 ????           00326         BANKSEL _hab_sensor
+                      00327 ;       .line   58; adc.c       if (hab_sensor == 1) {
+000026 51??           00328         MOVF    _hab_sensor, W, B
+000028 0A01           00329         XORLW   0x01
+00002A E0??           00330         BZ      _00158_DS_
+00002C D???           00331         BRA     _00139_DS_
+00002E                00332 _00158_DS_:
+                      00333 ;       .line   59; adc.c       if (!bit_tst(ADCON0, 1) && !flag) {
+00002E 50??           00334         MOVF    _ADCON0, W
+000030 0B02           00335         ANDLW   0x02
+000032 40E8           00336         RRNCF   WREG, W
+000034 6E??           00337         MOVWF   r0x02
+000036 50??           00338         MOVF    r0x02, W
+000038 E1??           00339         BNZ     _00133_DS_
+00003A ????           00340         BANKSEL _le_lumi_flag_1_14
+00003C 51??           00341         MOVF    _le_lumi_flag_1_14, W, B
+00003E E1??           00342         BNZ     _00133_DS_
+                      00343 ;       .line   60; adc.c       ADCON0 = 0b00000101;
+000040 0E05           00344         MOVLW   0x05
+000042 6E??           00345         MOVWF   _ADCON0
+                      00346 ;       .line   61; adc.c       delay();
+000044 EC?? F0??      00347         CALL    _delay
+                      00348 ;       .line   62; adc.c       bit_set(ADCON0, 1);
+000048 82??           00349         BSF     _ADCON0, 1
+                      00350 ;       .line   63; adc.c       flag = 1;
+00004A 0E01           00351         MOVLW   0x01
+00004C ????           00352         BANKSEL _le_lumi_flag_1_14
+00004E 6F??           00353         MOVWF   _le_lumi_flag_1_14, B
+000050                00354 _00133_DS_:
+                      00355 ;       .line   66; adc.c       if (!bit_tst(ADCON0, 1) && flag) {
+000050 50??           00356         MOVF    _ADCON0, W
+000052 0B02           00357         ANDLW   0x02
+000054 40E8           00358         RRNCF   WREG, W
+000056 6E??           00359         MOVWF   r0x02
+000058 50??           00360         MOVF    r0x02, W
+00005A E1??           00361         BNZ     _00136_DS_
+00005C ????           00362         BANKSEL _le_lumi_flag_1_14
+00005E 51??           00363         MOVF    _le_lumi_flag_1_14, W, B
+000060 E0??           00364         BZ      _00136_DS_
+                      00365 ;       .line   67; adc.c       tmp = ADRESH;
+000062 C??? F???      00366         MOVFF   _ADRESH, _le_lumi_tmp_1_14
+000066 ????           00367         BANKSEL (_le_lumi_tmp_1_14 + 1)
+000068 6B??           00368         CLRF    (_le_lumi_tmp_1_14 + 1), B
+00006A ????           00369         BANKSEL _le_lumi_tmp_1_14
+                      00370 ;       .line   68; adc.c       tmp <<= 8;
+00006C 51??           00371         MOVF    _le_lumi_tmp_1_14, W, B
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00006E ????           00372         BANKSEL (_le_lumi_tmp_1_14 + 1)
+000070 6F??           00373         MOVWF   (_le_lumi_tmp_1_14 + 1), B
+000072 ????           00374         BANKSEL _le_lumi_tmp_1_14
+000074 6B??           00375         CLRF    _le_lumi_tmp_1_14, B
+                      00376 ;       .line   69; adc.c       tmp += ADRESL;
+000076 C??? F???      00377         MOVFF   _ADRESL, r0x02
+00007A 6A??           00378         CLRF    r0x03
+00007C 50??           00379         MOVF    r0x02, W
+00007E ????           00380         BANKSEL _le_lumi_tmp_1_14
+000080 27??           00381         ADDWF   _le_lumi_tmp_1_14, F, B
+000082 50??           00382         MOVF    r0x03, W
+000084 ????           00383         BANKSEL (_le_lumi_tmp_1_14 + 1)
+000086 23??           00384         ADDWFC  (_le_lumi_tmp_1_14 + 1), F, B
+000088 ????           00385         BANKSEL _le_lumi_flag_1_14
+                      00386 ;       .line   70; adc.c       flag = 0;
+00008A 6B??           00387         CLRF    _le_lumi_flag_1_14, B
+00008C ????           00388         BANKSEL _hab_sensor
+                      00389 ;       .line   71; adc.c       hab_sensor = 0;
+00008E 6B??           00390         CLRF    _hab_sensor, B
+000090                00391 _00136_DS_:
+                      00392 ;       .line   73; adc.c       ret = 100*(tmp - MIN_LUMI) / (MAX_LUMI - MIN_LUMI);
+000090 C??? F???      00393         MOVFF   _le_lumi_tmp_1_14, r0x02
+000094 C??? F???      00394         MOVFF   (_le_lumi_tmp_1_14 + 1), r0x03
+000098 6A??           00395         CLRF    r0x04
+00009A 6A??           00396         CLRF    r0x05
+00009C 0E6B           00397         MOVLW   0x6b
+00009E 26??           00398         ADDWF   r0x02, F
+0000A0 0E42           00399         MOVLW   0x42
+0000A2 22??           00400         ADDWFC  r0x03, F
+0000A4 0EFF           00401         MOVLW   0xff
+0000A6 22??           00402         ADDWFC  r0x04, F
+0000A8 22??           00403         ADDWFC  r0x05, F
+0000AA 50??           00404         MOVF    r0x05, W
+0000AC 6EE5           00405         MOVWF   POSTDEC1
+0000AE 50??           00406         MOVF    r0x04, W
+0000B0 6EE5           00407         MOVWF   POSTDEC1
+0000B2 50??           00408         MOVF    r0x03, W
+0000B4 6EE5           00409         MOVWF   POSTDEC1
+0000B6 50??           00410         MOVF    r0x02, W
+0000B8 6EE5           00411         MOVWF   POSTDEC1
+0000BA 0E00           00412         MOVLW   0x00
+0000BC 6EE5           00413         MOVWF   POSTDEC1
+0000BE 0E00           00414         MOVLW   0x00
+0000C0 6EE5           00415         MOVWF   POSTDEC1
+0000C2 0E00           00416         MOVLW   0x00
+0000C4 6EE5           00417         MOVWF   POSTDEC1
+0000C6 0E64           00418         MOVLW   0x64
+0000C8 6EE5           00419         MOVWF   POSTDEC1
+0000CA EC?? F0??      00420         CALL    __mullong
+0000CE 6E??           00421         MOVWF   r0x02
+0000D0 CFF3 F000      00422         MOVFF   PRODL, r0x03
+0000D4 CFF4 F000      00423         MOVFF   PRODH, r0x04
+0000D8 CFE9 F000      00424         MOVFF   FSR0L, r0x05
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000DC 0E08           00425         MOVLW   0x08
+0000DE 26E1           00426         ADDWF   FSR1L, F
+0000E0 0E00           00427         MOVLW   0x00
+0000E2 6EE5           00428         MOVWF   POSTDEC1
+0000E4 0E00           00429         MOVLW   0x00
+0000E6 6EE5           00430         MOVWF   POSTDEC1
+0000E8 0E41           00431         MOVLW   0x41
+0000EA 6EE5           00432         MOVWF   POSTDEC1
+0000EC 0EAB           00433         MOVLW   0xab
+0000EE 6EE5           00434         MOVWF   POSTDEC1
+0000F0 50??           00435         MOVF    r0x05, W
+0000F2 6EE5           00436         MOVWF   POSTDEC1
+0000F4 50??           00437         MOVF    r0x04, W
+0000F6 6EE5           00438         MOVWF   POSTDEC1
+0000F8 50??           00439         MOVF    r0x03, W
+0000FA 6EE5           00440         MOVWF   POSTDEC1
+0000FC 50??           00441         MOVF    r0x02, W
+0000FE 6EE5           00442         MOVWF   POSTDEC1
+000100 EC?? F0??      00443         CALL    __divslong
+000104 6E??           00444         MOVWF   r0x02
+000106 CFF3 F000      00445         MOVFF   PRODL, r0x03
+00010A CFF4 F000      00446         MOVFF   PRODH, r0x04
+00010E CFE9 F000      00447         MOVFF   FSR0L, r0x05
+000112 0E08           00448         MOVLW   0x08
+000114 26E1           00449         ADDWF   FSR1L, F
+000116 50??           00450         MOVF    r0x02, W
+000118 6E??           00451         MOVWF   r0x00
+00011A 50??           00452         MOVF    r0x03, W
+00011C 6E??           00453         MOVWF   r0x01
+00011E                00454 _00139_DS_:
+                      00455 ;       .line   76; adc.c       return ret;
+00011E C??? F???      00456         MOVFF   r0x01, PRODL
+000122 50??           00457         MOVF    r0x00, W
+000124 CFE4 F000      00458         MOVFF   PREINC1, r0x05
+000128 CFE4 F000      00459         MOVFF   PREINC1, r0x04
+00012C CFE4 F000      00460         MOVFF   PREINC1, r0x03
+000130 CFE4 F000      00461         MOVFF   PREINC1, r0x02
+000134 CFE4 F000      00462         MOVFF   PREINC1, r0x01
+000138 CFE4 F000      00463         MOVFF   PREINC1, r0x00
+00013C CFE4 FFD9      00464         MOVFF   PREINC1, FSR2L
+000140 0012           00465         RETURN  
+                      00466 
+                      00467 ; ; Starting pCode block
+                      00468 S_adc__le_temp  code
+000000                00469 _le_temp:
+                      00470 ;       .line   25; adc.c       unsigned int le_temp()
+000000 CFD9 FFE5      00471         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00472         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00473         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00474         MOVFF   r0x01, POSTDEC1
+000010 ????           00475         BANKSEL _hab_sensor
+                      00476 ;       .line   30; adc.c       if (!hab_sensor) {
+000012 51??           00477         MOVF    _hab_sensor, W, B
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000014 A4D8           00478         BTFSS   STATUS, 2
+000016 D???           00479         BRA     _00126_DS_
+                      00480 ;       .line   32; adc.c       if (!bit_tst(ADCON0, 1) && !flag) {
+000018 50??           00481         MOVF    _ADCON0, W
+00001A 0B02           00482         ANDLW   0x02
+00001C 40E8           00483         RRNCF   WREG, W
+00001E 6E??           00484         MOVWF   r0x00
+000020 50??           00485         MOVF    r0x00, W
+000022 E1??           00486         BNZ     _00120_DS_
+000024 ????           00487         BANKSEL _le_temp_flag_1_9
+000026 51??           00488         MOVF    _le_temp_flag_1_9, W, B
+000028 E1??           00489         BNZ     _00120_DS_
+                      00490 ;       .line   33; adc.c       ADCON0 = 0b00000001;
+00002A 0E01           00491         MOVLW   0x01
+00002C 6E??           00492         MOVWF   _ADCON0
+                      00493 ;       .line   34; adc.c       delay();
+00002E EC?? F0??      00494         CALL    _delay
+                      00495 ;       .line   35; adc.c       bit_set(ADCON0, 1);
+000032 82??           00496         BSF     _ADCON0, 1
+                      00497 ;       .line   36; adc.c       flag = 1;
+000034 0E01           00498         MOVLW   0x01
+000036 ????           00499         BANKSEL _le_temp_flag_1_9
+000038 6F??           00500         MOVWF   _le_temp_flag_1_9, B
+00003A                00501 _00120_DS_:
+                      00502 ;       .line   40; adc.c       if (!bit_tst(ADCON0, 1) && flag) {
+00003A 50??           00503         MOVF    _ADCON0, W
+00003C 0B02           00504         ANDLW   0x02
+00003E 40E8           00505         RRNCF   WREG, W
+000040 6E??           00506         MOVWF   r0x00
+000042 50??           00507         MOVF    r0x00, W
+000044 E1??           00508         BNZ     _00126_DS_
+000046 ????           00509         BANKSEL _le_temp_flag_1_9
+000048 51??           00510         MOVF    _le_temp_flag_1_9, W, B
+00004A E0??           00511         BZ      _00126_DS_
+                      00512 ;       .line   41; adc.c       ret = ADRESH;
+00004C C??? F???      00513         MOVFF   _ADRESH, _le_temp_ret_1_9
+000050 ????           00514         BANKSEL (_le_temp_ret_1_9 + 1)
+000052 6B??           00515         CLRF    (_le_temp_ret_1_9 + 1), B
+000054 ????           00516         BANKSEL _le_temp_ret_1_9
+                      00517 ;       .line   42; adc.c       ret <<= 8;
+000056 51??           00518         MOVF    _le_temp_ret_1_9, W, B
+000058 ????           00519         BANKSEL (_le_temp_ret_1_9 + 1)
+00005A 6F??           00520         MOVWF   (_le_temp_ret_1_9 + 1), B
+00005C ????           00521         BANKSEL _le_temp_ret_1_9
+00005E 6B??           00522         CLRF    _le_temp_ret_1_9, B
+                      00523 ;       .line   43; adc.c       ret += ADRESL;
+000060 C??? F???      00524         MOVFF   _ADRESL, r0x00
+000064 6A??           00525         CLRF    r0x01
+000066 50??           00526         MOVF    r0x00, W
+000068 ????           00527         BANKSEL _le_temp_ret_1_9
+00006A 27??           00528         ADDWF   _le_temp_ret_1_9, F, B
+00006C 50??           00529         MOVF    r0x01, W
+00006E ????           00530         BANKSEL (_le_temp_ret_1_9 + 1)
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000070 23??           00531         ADDWFC  (_le_temp_ret_1_9 + 1), F, B
+000072 ????           00532         BANKSEL _le_temp_flag_1_9
+                      00533 ;       .line   44; adc.c       flag = 0;
+000074 6B??           00534         CLRF    _le_temp_flag_1_9, B
+                      00535 ;       .line   45; adc.c       hab_sensor = 1;
+000076 0E01           00536         MOVLW   0x01
+000078 ????           00537         BANKSEL _hab_sensor
+00007A 6F??           00538         MOVWF   _hab_sensor, B
+00007C                00539 _00126_DS_:
+00007C ????           00540         BANKSEL _le_temp_ret_1_9
+                      00541 ;       .line   49; adc.c       return (ret / 16);
+00007E 39??           00542         SWAPF   _le_temp_ret_1_9, W, B
+000080 0B0F           00543         ANDLW   0x0f
+000082 6E??           00544         MOVWF   r0x00
+000084 ????           00545         BANKSEL (_le_temp_ret_1_9 + 1)
+000086 39??           00546         SWAPF   (_le_temp_ret_1_9 + 1), W, B
+000088 6E??           00547         MOVWF   r0x01
+00008A 0BF0           00548         ANDLW   0xf0
+00008C 1A??           00549         XORWF   r0x01, F
+00008E 26??           00550         ADDWF   r0x00, F
+000090 C??? F???      00551         MOVFF   r0x01, PRODL
+000094 50??           00552         MOVF    r0x00, W
+000096 CFE4 F000      00553         MOVFF   PREINC1, r0x01
+00009A CFE4 F000      00554         MOVFF   PREINC1, r0x00
+00009E CFE4 FFD9      00555         MOVFF   PREINC1, FSR2L
+0000A2 0012           00556         RETURN  
+                      00557 
+                      00558 ; ; Starting pCode block
+                      00559 S_adc__inicializa_ad    code
+000000                00560 _inicializa_ad:
+                      00561 ;       .line   16; adc.c       void inicializa_ad(void)
+000000 CFD9 FFE5      00562         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00563         MOVFF   FSR1L, FSR2L
+                      00564 ;       .line   18; adc.c       bit_set(TRISA, 0); //seta o bit 0 como entrada
+000008 80??           00565         BSF     _TRISA, 0
+                      00566 ;       .line   19; adc.c       bit_set(TRISA, 1);
+00000A 82??           00567         BSF     _TRISA, 1
+                      00568 ;       .line   21; adc.c       ADCON1 = 0b00001101; //AN0 e AN1 analógicos, a referencia é baseada na f
+                            onte
+00000C 0E0D           00569         MOVLW   0x0d
+00000E 6E??           00570         MOVWF   _ADCON1
+000010 CFE4 FFD9      00571         MOVFF   PREINC1, FSR2L
+000014 0012           00572         RETURN  
+                      00573 
+                      00574 ; ; Starting pCode block
+                      00575 S_adc__delay    code
+000000                00576 _delay:
+                      00577 ;       .line   10; adc.c       void delay()
+000000 CFD9 FFE5      00578         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00579         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00580         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00581         MOVFF   r0x01, POSTDEC1
+                      00582 ;       .line   13; adc.c       for (i=0; i<10; i++);
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000010 0E0A           00583         MOVLW   0x0a
+000012 6E??           00584         MOVWF   r0x00
+000014 6A??           00585         CLRF    r0x01
+000016                00586 _00108_DS_:
+000016 0EFF           00587         MOVLW   0xff
+000018 26??           00588         ADDWF   r0x00, F
+00001A 22??           00589         ADDWFC  r0x01, F
+00001C 50??           00590         MOVF    r0x00, W
+00001E 10??           00591         IORWF   r0x01, W
+000020 E1??           00592         BNZ     _00108_DS_
+000022 CFE4 F000      00593         MOVFF   PREINC1, r0x01
+000026 CFE4 F000      00594         MOVFF   PREINC1, r0x00
+00002A CFE4 FFD9      00595         MOVFF   PREINC1, FSR2L
+00002E 0012           00596         RETURN  
+                      00597 
+                      00598 
+                      00599 
+                      00600 ; Statistics:
+                      00601 ; code size:      556 (0x022c) bytes ( 0.42%)
+                      00602 ;                 278 (0x0116) words
+                      00603 ; udata size:       0 (0x0000) bytes ( 0.00%)
+                      00604 ; access size:      6 (0x0006) bytes
+                      00605 
+                      00606 
+                      00607         end
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+POSTDEC1                          00000FE5
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00108_DS_                        00000016
+_00120_DS_                        0000003A
+_00126_DS_                        0000007C
+_00133_DS_                        00000050
+_00136_DS_                        00000090
+_00139_DS_                        0000011E
+_00158_DS_                        0000002E
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_BAUDCON                          00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1AS                           00000000
+_CCP1ASbits                       00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP1DEL                          00000000
+_CCP1DELbits                      00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CMCON                            00000000
+_CMCONbits                        00000000
+_CVRCON                           00000000
+_CVRCONbits                       00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_DDRCbits                         00000000
+_DDRD                             00000000
+_DDRDbits                         00000000
+_DDRE                             00000000
+_DDREbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP1CON                         00000000
+_ECCP1CONbits                     00000000
+_ECCP1DEL                         00000000
+_ECCP1DELbits                     00000000
+_EEADR                            00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATD                             00000000
+_LATDbits                         00000000
+_LATE                             00000000
+_LATEbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_OSCCON                           00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTD                            00000000
+_PORTDbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCSTA                            00000000
+_RCSTAbits                        00000000
+_SPBRG                            00000000
+_SPBRGH                           00000000
+_SPPCFG                           00000000
+_SPPCFGbits                       00000000
+_SPPCON                           00000000
+_SPPCONbits                       00000000
+_SPPDATA                          00000000
+_SPPEPS                           00000000
+_SPPEPSbits                       00000000
+_SSPADD                           00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISD                            00000000
+_TRISDbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TXREG                            00000000
+_TXSTA                            00000000
+_TXSTAbits                        00000000
+_UADDR                            00000000
+_UADDRbits                        00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_UCFG                             00000000
+_UCFGbits                         00000000
+_UCON                             00000000
+_UCONbits                         00000000
+_UEIE                             00000000
+_UEIEbits                         00000000
+_UEIR                             00000000
+_UEIRbits                         00000000
+_UEP0                             00000000
+_UEP0bits                         00000000
+_UEP1                             00000000
+_UEP10                            00000000
+_UEP10bits                        00000000
+_UEP11                            00000000
+_UEP11bits                        00000000
+_UEP12                            00000000
+_UEP12bits                        00000000
+_UEP13                            00000000
+_UEP13bits                        00000000
+_UEP14                            00000000
+_UEP14bits                        00000000
+_UEP15                            00000000
+_UEP15bits                        00000000
+_UEP1bits                         00000000
+_UEP2                             00000000
+_UEP2bits                         00000000
+_UEP3                             00000000
+_UEP3bits                         00000000
+_UEP4                             00000000
+_UEP4bits                         00000000
+_UEP5                             00000000
+_UEP5bits                         00000000
+_UEP6                             00000000
+_UEP6bits                         00000000
+_UEP7                             00000000
+_UEP7bits                         00000000
+_UEP8                             00000000
+_UEP8bits                         00000000
+_UEP9                             00000000
+_UEP9bits                         00000000
+_UFRM                             00000000
+_UFRMH                            00000000
+_UFRMHbits                        00000000
+_UFRML                            00000000
+_UFRMLbits                        00000000
+_UIE                              00000000
+_UIEbits                          00000000
+_UIR                              00000000
+_UIRbits                          00000000
+_USTAT                            00000000
+_USTATbits                        00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:26         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WREG                             00000000
+__18F4550                         00000001
+__divslong                        00000000
+__mullong                         00000000
+_delay                            00000000
+_hab_sensor                       00000000
+_inicializa_ad                    00000000
+_le_lumi                          00000000
+_le_lumi_flag_1_14                00000003
+_le_lumi_tmp_1_14                 00000004
+_le_temp                          00000000
+_le_temp_flag_1_9                 00000000
+_le_temp_ret_1_9                  00000001
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

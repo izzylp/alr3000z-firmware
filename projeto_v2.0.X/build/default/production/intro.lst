@@ -1,0 +1,2020 @@
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.3.0 #8604 (May 11 2013) (Linux)
+                      00004 ; This file was generated Thu Dec  5 11:22:30 2013
+                      00005 ;--------------------------------------------------------
+                      00006 ; PIC16 port for the Microchip 16-bit core micros
+                      00007 ;--------------------------------------------------------
+                      00008         list    p=18f4550
+                      00009         radix   dec
+                      00010 
+                      00011 
+                      00012 ;--------------------------------------------------------
+                      00013 ; public variables in this module
+                      00014 ;--------------------------------------------------------
+  0000                00015         global  _intro
+                      00016 
+                      00017 ;--------------------------------------------------------
+                      00018 ; extern variables in this module
+                      00019 ;--------------------------------------------------------
+  0000                00020         extern  _SPPCFGbits
+  0000                00021         extern  _SPPEPSbits
+  0000                00022         extern  _SPPCONbits
+  0000                00023         extern  _UFRMLbits
+  0000                00024         extern  _UFRMHbits
+  0000                00025         extern  _UIRbits
+  0000                00026         extern  _UIEbits
+  0000                00027         extern  _UEIRbits
+  0000                00028         extern  _UEIEbits
+  0000                00029         extern  _USTATbits
+  0000                00030         extern  _UCONbits
+  0000                00031         extern  _UADDRbits
+  0000                00032         extern  _UCFGbits
+  0000                00033         extern  _UEP0bits
+  0000                00034         extern  _UEP1bits
+  0000                00035         extern  _UEP2bits
+  0000                00036         extern  _UEP3bits
+  0000                00037         extern  _UEP4bits
+  0000                00038         extern  _UEP5bits
+  0000                00039         extern  _UEP6bits
+  0000                00040         extern  _UEP7bits
+  0000                00041         extern  _UEP8bits
+  0000                00042         extern  _UEP9bits
+  0000                00043         extern  _UEP10bits
+  0000                00044         extern  _UEP11bits
+  0000                00045         extern  _UEP12bits
+  0000                00046         extern  _UEP13bits
+  0000                00047         extern  _UEP14bits
+  0000                00048         extern  _UEP15bits
+  0000                00049         extern  _PORTAbits
+  0000                00050         extern  _PORTBbits
+  0000                00051         extern  _PORTCbits
+  0000                00052         extern  _PORTDbits
+  0000                00053         extern  _PORTEbits
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00054         extern  _LATAbits
+  0000                00055         extern  _LATBbits
+  0000                00056         extern  _LATCbits
+  0000                00057         extern  _LATDbits
+  0000                00058         extern  _LATEbits
+  0000                00059         extern  _DDRAbits
+  0000                00060         extern  _TRISAbits
+  0000                00061         extern  _DDRBbits
+  0000                00062         extern  _TRISBbits
+  0000                00063         extern  _DDRCbits
+  0000                00064         extern  _TRISCbits
+  0000                00065         extern  _DDRDbits
+  0000                00066         extern  _TRISDbits
+  0000                00067         extern  _DDREbits
+  0000                00068         extern  _TRISEbits
+  0000                00069         extern  _OSCTUNEbits
+  0000                00070         extern  _PIE1bits
+  0000                00071         extern  _PIR1bits
+  0000                00072         extern  _IPR1bits
+  0000                00073         extern  _PIE2bits
+  0000                00074         extern  _PIR2bits
+  0000                00075         extern  _IPR2bits
+  0000                00076         extern  _EECON1bits
+  0000                00077         extern  _RCSTAbits
+  0000                00078         extern  _TXSTAbits
+  0000                00079         extern  _T3CONbits
+  0000                00080         extern  _CMCONbits
+  0000                00081         extern  _CVRCONbits
+  0000                00082         extern  _CCP1ASbits
+  0000                00083         extern  _ECCP1ASbits
+  0000                00084         extern  _CCP1DELbits
+  0000                00085         extern  _ECCP1DELbits
+  0000                00086         extern  _BAUDCONbits
+  0000                00087         extern  _BAUDCTLbits
+  0000                00088         extern  _CCP2CONbits
+  0000                00089         extern  _CCP1CONbits
+  0000                00090         extern  _ECCP1CONbits
+  0000                00091         extern  _ADCON2bits
+  0000                00092         extern  _ADCON1bits
+  0000                00093         extern  _ADCON0bits
+  0000                00094         extern  _SSPCON2bits
+  0000                00095         extern  _SSPCON1bits
+  0000                00096         extern  _SSPSTATbits
+  0000                00097         extern  _T2CONbits
+  0000                00098         extern  _T1CONbits
+  0000                00099         extern  _RCONbits
+  0000                00100         extern  _WDTCONbits
+  0000                00101         extern  _HLVDCONbits
+  0000                00102         extern  _LVDCONbits
+  0000                00103         extern  _OSCCONbits
+  0000                00104         extern  _T0CONbits
+  0000                00105         extern  _STATUSbits
+  0000                00106         extern  _INTCON3bits
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00107         extern  _INTCON2bits
+  0000                00108         extern  _INTCONbits
+  0000                00109         extern  _STKPTRbits
+  0000                00110         extern  _SPPDATA
+  0000                00111         extern  _SPPCFG
+  0000                00112         extern  _SPPEPS
+  0000                00113         extern  _SPPCON
+  0000                00114         extern  _UFRM
+  0000                00115         extern  _UFRML
+  0000                00116         extern  _UFRMH
+  0000                00117         extern  _UIR
+  0000                00118         extern  _UIE
+  0000                00119         extern  _UEIR
+  0000                00120         extern  _UEIE
+  0000                00121         extern  _USTAT
+  0000                00122         extern  _UCON
+  0000                00123         extern  _UADDR
+  0000                00124         extern  _UCFG
+  0000                00125         extern  _UEP0
+  0000                00126         extern  _UEP1
+  0000                00127         extern  _UEP2
+  0000                00128         extern  _UEP3
+  0000                00129         extern  _UEP4
+  0000                00130         extern  _UEP5
+  0000                00131         extern  _UEP6
+  0000                00132         extern  _UEP7
+  0000                00133         extern  _UEP8
+  0000                00134         extern  _UEP9
+  0000                00135         extern  _UEP10
+  0000                00136         extern  _UEP11
+  0000                00137         extern  _UEP12
+  0000                00138         extern  _UEP13
+  0000                00139         extern  _UEP14
+  0000                00140         extern  _UEP15
+  0000                00141         extern  _PORTA
+  0000                00142         extern  _PORTB
+  0000                00143         extern  _PORTC
+  0000                00144         extern  _PORTD
+  0000                00145         extern  _PORTE
+  0000                00146         extern  _LATA
+  0000                00147         extern  _LATB
+  0000                00148         extern  _LATC
+  0000                00149         extern  _LATD
+  0000                00150         extern  _LATE
+  0000                00151         extern  _DDRA
+  0000                00152         extern  _TRISA
+  0000                00153         extern  _DDRB
+  0000                00154         extern  _TRISB
+  0000                00155         extern  _DDRC
+  0000                00156         extern  _TRISC
+  0000                00157         extern  _DDRD
+  0000                00158         extern  _TRISD
+  0000                00159         extern  _DDRE
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00160         extern  _TRISE
+  0000                00161         extern  _OSCTUNE
+  0000                00162         extern  _PIE1
+  0000                00163         extern  _PIR1
+  0000                00164         extern  _IPR1
+  0000                00165         extern  _PIE2
+  0000                00166         extern  _PIR2
+  0000                00167         extern  _IPR2
+  0000                00168         extern  _EECON1
+  0000                00169         extern  _EECON2
+  0000                00170         extern  _EEDATA
+  0000                00171         extern  _EEADR
+  0000                00172         extern  _RCSTA
+  0000                00173         extern  _TXSTA
+  0000                00174         extern  _TXREG
+  0000                00175         extern  _RCREG
+  0000                00176         extern  _SPBRG
+  0000                00177         extern  _SPBRGH
+  0000                00178         extern  _T3CON
+  0000                00179         extern  _TMR3
+  0000                00180         extern  _TMR3L
+  0000                00181         extern  _TMR3H
+  0000                00182         extern  _CMCON
+  0000                00183         extern  _CVRCON
+  0000                00184         extern  _CCP1AS
+  0000                00185         extern  _ECCP1AS
+  0000                00186         extern  _CCP1DEL
+  0000                00187         extern  _ECCP1DEL
+  0000                00188         extern  _BAUDCON
+  0000                00189         extern  _BAUDCTL
+  0000                00190         extern  _CCP2CON
+  0000                00191         extern  _CCPR2
+  0000                00192         extern  _CCPR2L
+  0000                00193         extern  _CCPR2H
+  0000                00194         extern  _CCP1CON
+  0000                00195         extern  _ECCP1CON
+  0000                00196         extern  _CCPR1
+  0000                00197         extern  _CCPR1L
+  0000                00198         extern  _CCPR1H
+  0000                00199         extern  _ADCON2
+  0000                00200         extern  _ADCON1
+  0000                00201         extern  _ADCON0
+  0000                00202         extern  _ADRES
+  0000                00203         extern  _ADRESL
+  0000                00204         extern  _ADRESH
+  0000                00205         extern  _SSPCON2
+  0000                00206         extern  _SSPCON1
+  0000                00207         extern  _SSPSTAT
+  0000                00208         extern  _SSPADD
+  0000                00209         extern  _SSPBUF
+  0000                00210         extern  _T2CON
+  0000                00211         extern  _PR2
+  0000                00212         extern  _TMR2
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00213         extern  _T1CON
+  0000                00214         extern  _TMR1
+  0000                00215         extern  _TMR1L
+  0000                00216         extern  _TMR1H
+  0000                00217         extern  _RCON
+  0000                00218         extern  _WDTCON
+  0000                00219         extern  _HLVDCON
+  0000                00220         extern  _LVDCON
+  0000                00221         extern  _OSCCON
+  0000                00222         extern  _T0CON
+  0000                00223         extern  _TMR0
+  0000                00224         extern  _TMR0L
+  0000                00225         extern  _TMR0H
+  0000                00226         extern  _STATUS
+  0000                00227         extern  _FSR2L
+  0000                00228         extern  _FSR2H
+  0000                00229         extern  _PLUSW2
+  0000                00230         extern  _PREINC2
+  0000                00231         extern  _POSTDEC2
+  0000                00232         extern  _POSTINC2
+  0000                00233         extern  _INDF2
+  0000                00234         extern  _BSR
+  0000                00235         extern  _FSR1L
+  0000                00236         extern  _FSR1H
+  0000                00237         extern  _PLUSW1
+  0000                00238         extern  _PREINC1
+  0000                00239         extern  _POSTDEC1
+  0000                00240         extern  _POSTINC1
+  0000                00241         extern  _INDF1
+  0000                00242         extern  _WREG
+  0000                00243         extern  _FSR0L
+  0000                00244         extern  _FSR0H
+  0000                00245         extern  _PLUSW0
+  0000                00246         extern  _PREINC0
+  0000                00247         extern  _POSTDEC0
+  0000                00248         extern  _POSTINC0
+  0000                00249         extern  _INDF0
+  0000                00250         extern  _INTCON3
+  0000                00251         extern  _INTCON2
+  0000                00252         extern  _INTCON
+  0000                00253         extern  _PROD
+  0000                00254         extern  _PRODL
+  0000                00255         extern  _PRODH
+  0000                00256         extern  _TABLAT
+  0000                00257         extern  _TBLPTR
+  0000                00258         extern  _TBLPTRL
+  0000                00259         extern  _TBLPTRH
+  0000                00260         extern  _TBLPTRU
+  0000                00261         extern  _PC
+  0000                00262         extern  _PCL
+  0000                00263         extern  _PCLATH
+  0000                00264         extern  _PCLATU
+  0000                00265         extern  _STKPTR
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000                00266         extern  _TOS
+  0000                00267         extern  _TOSL
+  0000                00268         extern  _TOSH
+  0000                00269         extern  _TOSU
+  0000                00270         extern  _envia_comando
+  0000                00271         extern  _envia_dados
+  0000                00272         extern  _limpa_lcd
+                      00273 
+                      00274 ;--------------------------------------------------------
+                      00275 ;       Equates to used internal registers
+                      00276 ;--------------------------------------------------------
+  00000FD8            00277 STATUS  equ     0xfd8
+  00000FF9            00278 PCL     equ     0xff9
+  00000FFA            00279 PCLATH  equ     0xffa
+  00000FFB            00280 PCLATU  equ     0xffb
+  00000FE8            00281 WREG    equ     0xfe8
+  00000FE9            00282 FSR0L   equ     0xfe9
+  00000FEA            00283 FSR0H   equ     0xfea
+  00000FE1            00284 FSR1L   equ     0xfe1
+  00000FD9            00285 FSR2L   equ     0xfd9
+  00000FEF            00286 INDF0   equ     0xfef
+  00000FE6            00287 POSTINC1        equ     0xfe6
+  00000FE5            00288 POSTDEC1        equ     0xfe5
+  00000FE4            00289 PREINC1 equ     0xfe4
+  00000FF3            00290 PRODL   equ     0xff3
+  00000FF4            00291 PRODH   equ     0xff4
+                      00292 
+                      00293 
+                      00294 ; Internal registers
+                      00295 .registers      udata_ovr       0x0000
+000000                00296 r0x00   res     1
+000001                00297 r0x01   res     1
+000002                00298 r0x02   res     1
+000003                00299 r0x03   res     1
+000004                00300 r0x04   res     1
+000005                00301 r0x05   res     1
+000006                00302 r0x06   res     1
+000007                00303 r0x07   res     1
+000008                00304 r0x08   res     1
+000009                00305 r0x09   res     1
+00000A                00306 r0x0a   res     1
+00000B                00307 r0x0b   res     1
+00000C                00308 r0x0c   res     1
+00000D                00309 r0x0d   res     1
+                      00310 
+                      00311 udata_intro_0   udata
+000000                00312 _intro_letra_a_1_15     res     32
+                      00313 
+                      00314 udata_intro_1   udata
+000000                00315 _intro_letra_l_1_15     res     32
+                      00316 
+                      00317 udata_intro_2   udata
+000000                00318 _intro_letra_r_1_15     res     32
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00319 
+                      00320 udata_intro_3   udata
+000000                00321 _intro_letra_3_1_15     res     32
+                      00322 
+                      00323 udata_intro_4   udata
+000000                00324 _intro_letra_0_1_15     res     32
+                      00325 
+                      00326 udata_intro_5   udata
+000000                00327 _intro_letra_z_1_15     res     32
+                      00328 
+                      00329 ;--------------------------------------------------------
+                      00330 ; global & static initialisations
+                      00331 ;--------------------------------------------------------
+                      00332 ; I code from now on!
+                      00333 ; ; Starting pCode block
+                      00334 S_intro__intro  code
+000000                00335 _intro:
+                      00336 ;       .line   5; intro.c      void intro()
+000000 CFD9 FFE5      00337         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00338         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00339         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00340         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00341         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00342         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00343         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      00344         MOVFF   r0x05, POSTDEC1
+000020 C??? F???      00345         MOVFF   r0x06, POSTDEC1
+000024 C??? F???      00346         MOVFF   r0x07, POSTDEC1
+000028 C??? F???      00347         MOVFF   r0x08, POSTDEC1
+00002C C??? F???      00348         MOVFF   r0x09, POSTDEC1
+000030 C??? F???      00349         MOVFF   r0x0a, POSTDEC1
+000034 C??? F???      00350         MOVFF   r0x0b, POSTDEC1
+000038 C??? F???      00351         MOVFF   r0x0c, POSTDEC1
+00003C C??? F???      00352         MOVFF   r0x0d, POSTDEC1
+000040 ????           00353         BANKSEL _intro_letra_a_1_15
+                      00354 ;       .line   7; intro.c      char letra_a[4][8] = {{{0b00000000}, {0b00000000}, {0b00000000}, {0b0000
+                            0000},
+000042 6B??           00355         CLRF    _intro_letra_a_1_15, B
+000044 ????           00356         BANKSEL (_intro_letra_a_1_15 + 1)
+000046 6B??           00357         CLRF    (_intro_letra_a_1_15 + 1), B
+000048 ????           00358         BANKSEL (_intro_letra_a_1_15 + 2)
+00004A 6B??           00359         CLRF    (_intro_letra_a_1_15 + 2), B
+00004C ????           00360         BANKSEL (_intro_letra_a_1_15 + 3)
+00004E 6B??           00361         CLRF    (_intro_letra_a_1_15 + 3), B
+000050 ????           00362         BANKSEL (_intro_letra_a_1_15 + 4)
+000052 6B??           00363         CLRF    (_intro_letra_a_1_15 + 4), B
+000054 0E01           00364         MOVLW   0x01
+000056 ????           00365         BANKSEL (_intro_letra_a_1_15 + 5)
+000058 6F??           00366         MOVWF   (_intro_letra_a_1_15 + 5), B
+00005A 0E01           00367         MOVLW   0x01
+00005C ????           00368         BANKSEL (_intro_letra_a_1_15 + 6)
+00005E 6F??           00369         MOVWF   (_intro_letra_a_1_15 + 6), B
+000060 0E03           00370         MOVLW   0x03
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000062 ????           00371         BANKSEL (_intro_letra_a_1_15 + 7)
+000064 6F??           00372         MOVWF   (_intro_letra_a_1_15 + 7), B
+000066 0E07           00373         MOVLW   0x07
+000068 ????           00374         BANKSEL (_intro_letra_a_1_15 + 8)
+00006A 6F??           00375         MOVWF   (_intro_letra_a_1_15 + 8), B
+00006C 0E0B           00376         MOVLW   0x0b
+00006E ????           00377         BANKSEL (_intro_letra_a_1_15 + 9)
+000070 6F??           00378         MOVWF   (_intro_letra_a_1_15 + 9), B
+000072 0E0B           00379         MOVLW   0x0b
+000074 ????           00380         BANKSEL (_intro_letra_a_1_15 + 10)
+000076 6F??           00381         MOVWF   (_intro_letra_a_1_15 + 10), B
+000078 0E1B           00382         MOVLW   0x1b
+00007A ????           00383         BANKSEL (_intro_letra_a_1_15 + 11)
+00007C 6F??           00384         MOVWF   (_intro_letra_a_1_15 + 11), B
+00007E 0E13           00385         MOVLW   0x13
+000080 ????           00386         BANKSEL (_intro_letra_a_1_15 + 12)
+000082 6F??           00387         MOVWF   (_intro_letra_a_1_15 + 12), B
+000084 0E13           00388         MOVLW   0x13
+000086 ????           00389         BANKSEL (_intro_letra_a_1_15 + 13)
+000088 6F??           00390         MOVWF   (_intro_letra_a_1_15 + 13), B
+00008A 0E03           00391         MOVLW   0x03
+00008C ????           00392         BANKSEL (_intro_letra_a_1_15 + 14)
+00008E 6F??           00393         MOVWF   (_intro_letra_a_1_15 + 14), B
+000090 0E03           00394         MOVLW   0x03
+000092 ????           00395         BANKSEL (_intro_letra_a_1_15 + 15)
+000094 6F??           00396         MOVWF   (_intro_letra_a_1_15 + 15), B
+000096 0E03           00397         MOVLW   0x03
+000098 ????           00398         BANKSEL (_intro_letra_a_1_15 + 16)
+00009A 6F??           00399         MOVWF   (_intro_letra_a_1_15 + 16), B
+00009C 0E07           00400         MOVLW   0x07
+00009E ????           00401         BANKSEL (_intro_letra_a_1_15 + 17)
+0000A0 6F??           00402         MOVWF   (_intro_letra_a_1_15 + 17), B
+0000A2 0E04           00403         MOVLW   0x04
+0000A4 ????           00404         BANKSEL (_intro_letra_a_1_15 + 18)
+0000A6 6F??           00405         MOVWF   (_intro_letra_a_1_15 + 18), B
+0000A8 0E0C           00406         MOVLW   0x0c
+0000AA ????           00407         BANKSEL (_intro_letra_a_1_15 + 19)
+0000AC 6F??           00408         MOVWF   (_intro_letra_a_1_15 + 19), B
+0000AE 0E08           00409         MOVLW   0x08
+0000B0 ????           00410         BANKSEL (_intro_letra_a_1_15 + 20)
+0000B2 6F??           00411         MOVWF   (_intro_letra_a_1_15 + 20), B
+0000B4 0E08           00412         MOVLW   0x08
+0000B6 ????           00413         BANKSEL (_intro_letra_a_1_15 + 21)
+0000B8 6F??           00414         MOVWF   (_intro_letra_a_1_15 + 21), B
+0000BA 0E18           00415         MOVLW   0x18
+0000BC ????           00416         BANKSEL (_intro_letra_a_1_15 + 22)
+0000BE 6F??           00417         MOVWF   (_intro_letra_a_1_15 + 22), B
+0000C0 0E10           00418         MOVLW   0x10
+0000C2 ????           00419         BANKSEL (_intro_letra_a_1_15 + 23)
+0000C4 6F??           00420         MOVWF   (_intro_letra_a_1_15 + 23), B
+0000C6 0E1F           00421         MOVLW   0x1f
+0000C8 ????           00422         BANKSEL (_intro_letra_a_1_15 + 24)
+0000CA 6F??           00423         MOVWF   (_intro_letra_a_1_15 + 24), B
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000CC 0E1F           00424         MOVLW   0x1f
+0000CE ????           00425         BANKSEL (_intro_letra_a_1_15 + 25)
+0000D0 6F??           00426         MOVWF   (_intro_letra_a_1_15 + 25), B
+0000D2 0E03           00427         MOVLW   0x03
+0000D4 ????           00428         BANKSEL (_intro_letra_a_1_15 + 26)
+0000D6 6F??           00429         MOVWF   (_intro_letra_a_1_15 + 26), B
+0000D8 0E03           00430         MOVLW   0x03
+0000DA ????           00431         BANKSEL (_intro_letra_a_1_15 + 27)
+0000DC 6F??           00432         MOVWF   (_intro_letra_a_1_15 + 27), B
+0000DE 0E03           00433         MOVLW   0x03
+0000E0 ????           00434         BANKSEL (_intro_letra_a_1_15 + 28)
+0000E2 6F??           00435         MOVWF   (_intro_letra_a_1_15 + 28), B
+0000E4 0E03           00436         MOVLW   0x03
+0000E6 ????           00437         BANKSEL (_intro_letra_a_1_15 + 29)
+0000E8 6F??           00438         MOVWF   (_intro_letra_a_1_15 + 29), B
+0000EA 0E03           00439         MOVLW   0x03
+0000EC ????           00440         BANKSEL (_intro_letra_a_1_15 + 30)
+0000EE 6F??           00441         MOVWF   (_intro_letra_a_1_15 + 30), B
+0000F0 0E03           00442         MOVLW   0x03
+0000F2 ????           00443         BANKSEL (_intro_letra_a_1_15 + 31)
+0000F4 6F??           00444         MOVWF   (_intro_letra_a_1_15 + 31), B
+                      00445 ;       .line   16; intro.c     char letra_l[4][8] = {{{0b00011000}, {0b00011000}, {0b00011000}, {0b0001
+                            1000},
+0000F6 0E18           00446         MOVLW   0x18
+0000F8 ????           00447         BANKSEL _intro_letra_l_1_15
+0000FA 6F??           00448         MOVWF   _intro_letra_l_1_15, B
+0000FC 0E18           00449         MOVLW   0x18
+0000FE ????           00450         BANKSEL (_intro_letra_l_1_15 + 1)
+000100 6F??           00451         MOVWF   (_intro_letra_l_1_15 + 1), B
+000102 0E18           00452         MOVLW   0x18
+000104 ????           00453         BANKSEL (_intro_letra_l_1_15 + 2)
+000106 6F??           00454         MOVWF   (_intro_letra_l_1_15 + 2), B
+000108 0E18           00455         MOVLW   0x18
+00010A ????           00456         BANKSEL (_intro_letra_l_1_15 + 3)
+00010C 6F??           00457         MOVWF   (_intro_letra_l_1_15 + 3), B
+00010E 0E18           00458         MOVLW   0x18
+000110 ????           00459         BANKSEL (_intro_letra_l_1_15 + 4)
+000112 6F??           00460         MOVWF   (_intro_letra_l_1_15 + 4), B
+000114 0E18           00461         MOVLW   0x18
+000116 ????           00462         BANKSEL (_intro_letra_l_1_15 + 5)
+000118 6F??           00463         MOVWF   (_intro_letra_l_1_15 + 5), B
+00011A 0E18           00464         MOVLW   0x18
+00011C ????           00465         BANKSEL (_intro_letra_l_1_15 + 6)
+00011E 6F??           00466         MOVWF   (_intro_letra_l_1_15 + 6), B
+000120 0E18           00467         MOVLW   0x18
+000122 ????           00468         BANKSEL (_intro_letra_l_1_15 + 7)
+000124 6F??           00469         MOVWF   (_intro_letra_l_1_15 + 7), B
+000126 ????           00470         BANKSEL (_intro_letra_l_1_15 + 8)
+000128 6B??           00471         CLRF    (_intro_letra_l_1_15 + 8), B
+00012A ????           00472         BANKSEL (_intro_letra_l_1_15 + 9)
+00012C 6B??           00473         CLRF    (_intro_letra_l_1_15 + 9), B
+00012E ????           00474         BANKSEL (_intro_letra_l_1_15 + 10)
+000130 6B??           00475         CLRF    (_intro_letra_l_1_15 + 10), B
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000132 ????           00476         BANKSEL (_intro_letra_l_1_15 + 11)
+000134 6B??           00477         CLRF    (_intro_letra_l_1_15 + 11), B
+000136 ????           00478         BANKSEL (_intro_letra_l_1_15 + 12)
+000138 6B??           00479         CLRF    (_intro_letra_l_1_15 + 12), B
+00013A ????           00480         BANKSEL (_intro_letra_l_1_15 + 13)
+00013C 6B??           00481         CLRF    (_intro_letra_l_1_15 + 13), B
+00013E ????           00482         BANKSEL (_intro_letra_l_1_15 + 14)
+000140 6B??           00483         CLRF    (_intro_letra_l_1_15 + 14), B
+000142 ????           00484         BANKSEL (_intro_letra_l_1_15 + 15)
+000144 6B??           00485         CLRF    (_intro_letra_l_1_15 + 15), B
+000146 0E18           00486         MOVLW   0x18
+000148 ????           00487         BANKSEL (_intro_letra_l_1_15 + 16)
+00014A 6F??           00488         MOVWF   (_intro_letra_l_1_15 + 16), B
+00014C 0E18           00489         MOVLW   0x18
+00014E ????           00490         BANKSEL (_intro_letra_l_1_15 + 17)
+000150 6F??           00491         MOVWF   (_intro_letra_l_1_15 + 17), B
+000152 0E18           00492         MOVLW   0x18
+000154 ????           00493         BANKSEL (_intro_letra_l_1_15 + 18)
+000156 6F??           00494         MOVWF   (_intro_letra_l_1_15 + 18), B
+000158 0E18           00495         MOVLW   0x18
+00015A ????           00496         BANKSEL (_intro_letra_l_1_15 + 19)
+00015C 6F??           00497         MOVWF   (_intro_letra_l_1_15 + 19), B
+00015E 0E18           00498         MOVLW   0x18
+000160 ????           00499         BANKSEL (_intro_letra_l_1_15 + 20)
+000162 6F??           00500         MOVWF   (_intro_letra_l_1_15 + 20), B
+000164 0E18           00501         MOVLW   0x18
+000166 ????           00502         BANKSEL (_intro_letra_l_1_15 + 21)
+000168 6F??           00503         MOVWF   (_intro_letra_l_1_15 + 21), B
+00016A 0E1F           00504         MOVLW   0x1f
+00016C ????           00505         BANKSEL (_intro_letra_l_1_15 + 22)
+00016E 6F??           00506         MOVWF   (_intro_letra_l_1_15 + 22), B
+000170 0E1F           00507         MOVLW   0x1f
+000172 ????           00508         BANKSEL (_intro_letra_l_1_15 + 23)
+000174 6F??           00509         MOVWF   (_intro_letra_l_1_15 + 23), B
+000176 ????           00510         BANKSEL (_intro_letra_l_1_15 + 24)
+000178 6B??           00511         CLRF    (_intro_letra_l_1_15 + 24), B
+00017A ????           00512         BANKSEL (_intro_letra_l_1_15 + 25)
+00017C 6B??           00513         CLRF    (_intro_letra_l_1_15 + 25), B
+00017E ????           00514         BANKSEL (_intro_letra_l_1_15 + 26)
+000180 6B??           00515         CLRF    (_intro_letra_l_1_15 + 26), B
+000182 ????           00516         BANKSEL (_intro_letra_l_1_15 + 27)
+000184 6B??           00517         CLRF    (_intro_letra_l_1_15 + 27), B
+000186 ????           00518         BANKSEL (_intro_letra_l_1_15 + 28)
+000188 6B??           00519         CLRF    (_intro_letra_l_1_15 + 28), B
+00018A ????           00520         BANKSEL (_intro_letra_l_1_15 + 29)
+00018C 6B??           00521         CLRF    (_intro_letra_l_1_15 + 29), B
+00018E 0E1F           00522         MOVLW   0x1f
+000190 ????           00523         BANKSEL (_intro_letra_l_1_15 + 30)
+000192 6F??           00524         MOVWF   (_intro_letra_l_1_15 + 30), B
+000194 0E1F           00525         MOVLW   0x1f
+000196 ????           00526         BANKSEL (_intro_letra_l_1_15 + 31)
+000198 6F??           00527         MOVWF   (_intro_letra_l_1_15 + 31), B
+                      00528 ;       .line   25; intro.c     char letra_r[4][8] = {{{0b00011111}, {0b00011000}, {0b00011000}, {0b0001
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            1000},
+00019A 0E1F           00529         MOVLW   0x1f
+00019C ????           00530         BANKSEL _intro_letra_r_1_15
+00019E 6F??           00531         MOVWF   _intro_letra_r_1_15, B
+0001A0 0E18           00532         MOVLW   0x18
+0001A2 ????           00533         BANKSEL (_intro_letra_r_1_15 + 1)
+0001A4 6F??           00534         MOVWF   (_intro_letra_r_1_15 + 1), B
+0001A6 0E18           00535         MOVLW   0x18
+0001A8 ????           00536         BANKSEL (_intro_letra_r_1_15 + 2)
+0001AA 6F??           00537         MOVWF   (_intro_letra_r_1_15 + 2), B
+0001AC 0E18           00538         MOVLW   0x18
+0001AE ????           00539         BANKSEL (_intro_letra_r_1_15 + 3)
+0001B0 6F??           00540         MOVWF   (_intro_letra_r_1_15 + 3), B
+0001B2 0E18           00541         MOVLW   0x18
+0001B4 ????           00542         BANKSEL (_intro_letra_r_1_15 + 4)
+0001B6 6F??           00543         MOVWF   (_intro_letra_r_1_15 + 4), B
+0001B8 0E18           00544         MOVLW   0x18
+0001BA ????           00545         BANKSEL (_intro_letra_r_1_15 + 5)
+0001BC 6F??           00546         MOVWF   (_intro_letra_r_1_15 + 5), B
+0001BE 0E18           00547         MOVLW   0x18
+0001C0 ????           00548         BANKSEL (_intro_letra_r_1_15 + 6)
+0001C2 6F??           00549         MOVWF   (_intro_letra_r_1_15 + 6), B
+0001C4 0E18           00550         MOVLW   0x18
+0001C6 ????           00551         BANKSEL (_intro_letra_r_1_15 + 7)
+0001C8 6F??           00552         MOVWF   (_intro_letra_r_1_15 + 7), B
+0001CA 0E1C           00553         MOVLW   0x1c
+0001CC ????           00554         BANKSEL (_intro_letra_r_1_15 + 8)
+0001CE 6F??           00555         MOVWF   (_intro_letra_r_1_15 + 8), B
+0001D0 0E02           00556         MOVLW   0x02
+0001D2 ????           00557         BANKSEL (_intro_letra_r_1_15 + 9)
+0001D4 6F??           00558         MOVWF   (_intro_letra_r_1_15 + 9), B
+0001D6 0E01           00559         MOVLW   0x01
+0001D8 ????           00560         BANKSEL (_intro_letra_r_1_15 + 10)
+0001DA 6F??           00561         MOVWF   (_intro_letra_r_1_15 + 10), B
+0001DC 0E01           00562         MOVLW   0x01
+0001DE ????           00563         BANKSEL (_intro_letra_r_1_15 + 11)
+0001E0 6F??           00564         MOVWF   (_intro_letra_r_1_15 + 11), B
+0001E2 0E01           00565         MOVLW   0x01
+0001E4 ????           00566         BANKSEL (_intro_letra_r_1_15 + 12)
+0001E6 6F??           00567         MOVWF   (_intro_letra_r_1_15 + 12), B
+0001E8 0E02           00568         MOVLW   0x02
+0001EA ????           00569         BANKSEL (_intro_letra_r_1_15 + 13)
+0001EC 6F??           00570         MOVWF   (_intro_letra_r_1_15 + 13), B
+0001EE 0E04           00571         MOVLW   0x04
+0001F0 ????           00572         BANKSEL (_intro_letra_r_1_15 + 14)
+0001F2 6F??           00573         MOVWF   (_intro_letra_r_1_15 + 14), B
+0001F4 0E18           00574         MOVLW   0x18
+0001F6 ????           00575         BANKSEL (_intro_letra_r_1_15 + 15)
+0001F8 6F??           00576         MOVWF   (_intro_letra_r_1_15 + 15), B
+0001FA 0E18           00577         MOVLW   0x18
+0001FC ????           00578         BANKSEL (_intro_letra_r_1_15 + 16)
+0001FE 6F??           00579         MOVWF   (_intro_letra_r_1_15 + 16), B
+000200 0E18           00580         MOVLW   0x18
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000202 ????           00581         BANKSEL (_intro_letra_r_1_15 + 17)
+000204 6F??           00582         MOVWF   (_intro_letra_r_1_15 + 17), B
+000206 0E18           00583         MOVLW   0x18
+000208 ????           00584         BANKSEL (_intro_letra_r_1_15 + 18)
+00020A 6F??           00585         MOVWF   (_intro_letra_r_1_15 + 18), B
+00020C 0E18           00586         MOVLW   0x18
+00020E ????           00587         BANKSEL (_intro_letra_r_1_15 + 19)
+000210 6F??           00588         MOVWF   (_intro_letra_r_1_15 + 19), B
+000212 0E18           00589         MOVLW   0x18
+000214 ????           00590         BANKSEL (_intro_letra_r_1_15 + 20)
+000216 6F??           00591         MOVWF   (_intro_letra_r_1_15 + 20), B
+000218 0E18           00592         MOVLW   0x18
+00021A ????           00593         BANKSEL (_intro_letra_r_1_15 + 21)
+00021C 6F??           00594         MOVWF   (_intro_letra_r_1_15 + 21), B
+00021E 0E18           00595         MOVLW   0x18
+000220 ????           00596         BANKSEL (_intro_letra_r_1_15 + 22)
+000222 6F??           00597         MOVWF   (_intro_letra_r_1_15 + 22), B
+000224 0E18           00598         MOVLW   0x18
+000226 ????           00599         BANKSEL (_intro_letra_r_1_15 + 23)
+000228 6F??           00600         MOVWF   (_intro_letra_r_1_15 + 23), B
+00022A 0E10           00601         MOVLW   0x10
+00022C ????           00602         BANKSEL (_intro_letra_r_1_15 + 24)
+00022E 6F??           00603         MOVWF   (_intro_letra_r_1_15 + 24), B
+000230 0E18           00604         MOVLW   0x18
+000232 ????           00605         BANKSEL (_intro_letra_r_1_15 + 25)
+000234 6F??           00606         MOVWF   (_intro_letra_r_1_15 + 25), B
+000236 0E0C           00607         MOVLW   0x0c
+000238 ????           00608         BANKSEL (_intro_letra_r_1_15 + 26)
+00023A 6F??           00609         MOVWF   (_intro_letra_r_1_15 + 26), B
+00023C 0E04           00610         MOVLW   0x04
+00023E ????           00611         BANKSEL (_intro_letra_r_1_15 + 27)
+000240 6F??           00612         MOVWF   (_intro_letra_r_1_15 + 27), B
+000242 0E06           00613         MOVLW   0x06
+000244 ????           00614         BANKSEL (_intro_letra_r_1_15 + 28)
+000246 6F??           00615         MOVWF   (_intro_letra_r_1_15 + 28), B
+000248 0E02           00616         MOVLW   0x02
+00024A ????           00617         BANKSEL (_intro_letra_r_1_15 + 29)
+00024C 6F??           00618         MOVWF   (_intro_letra_r_1_15 + 29), B
+00024E 0E02           00619         MOVLW   0x02
+000250 ????           00620         BANKSEL (_intro_letra_r_1_15 + 30)
+000252 6F??           00621         MOVWF   (_intro_letra_r_1_15 + 30), B
+000254 0E01           00622         MOVLW   0x01
+000256 ????           00623         BANKSEL (_intro_letra_r_1_15 + 31)
+000258 6F??           00624         MOVWF   (_intro_letra_r_1_15 + 31), B
+                      00625 ;       .line   34; intro.c     char letra_3[4][8] = {{{0b00011111}, {0b00011111}, {0b00000000}, {0b0000
+                            0000},
+00025A 0E1F           00626         MOVLW   0x1f
+00025C ????           00627         BANKSEL _intro_letra_3_1_15
+00025E 6F??           00628         MOVWF   _intro_letra_3_1_15, B
+000260 0E1F           00629         MOVLW   0x1f
+000262 ????           00630         BANKSEL (_intro_letra_3_1_15 + 1)
+000264 6F??           00631         MOVWF   (_intro_letra_3_1_15 + 1), B
+000266 ????           00632         BANKSEL (_intro_letra_3_1_15 + 2)
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000268 6B??           00633         CLRF    (_intro_letra_3_1_15 + 2), B
+00026A ????           00634         BANKSEL (_intro_letra_3_1_15 + 3)
+00026C 6B??           00635         CLRF    (_intro_letra_3_1_15 + 3), B
+00026E ????           00636         BANKSEL (_intro_letra_3_1_15 + 4)
+000270 6B??           00637         CLRF    (_intro_letra_3_1_15 + 4), B
+000272 ????           00638         BANKSEL (_intro_letra_3_1_15 + 5)
+000274 6B??           00639         CLRF    (_intro_letra_3_1_15 + 5), B
+000276 ????           00640         BANKSEL (_intro_letra_3_1_15 + 6)
+000278 6B??           00641         CLRF    (_intro_letra_3_1_15 + 6), B
+00027A ????           00642         BANKSEL (_intro_letra_3_1_15 + 7)
+00027C 6B??           00643         CLRF    (_intro_letra_3_1_15 + 7), B
+00027E 0E1F           00644         MOVLW   0x1f
+000280 ????           00645         BANKSEL (_intro_letra_3_1_15 + 8)
+000282 6F??           00646         MOVWF   (_intro_letra_3_1_15 + 8), B
+000284 0E1F           00647         MOVLW   0x1f
+000286 ????           00648         BANKSEL (_intro_letra_3_1_15 + 9)
+000288 6F??           00649         MOVWF   (_intro_letra_3_1_15 + 9), B
+00028A 0E03           00650         MOVLW   0x03
+00028C ????           00651         BANKSEL (_intro_letra_3_1_15 + 10)
+00028E 6F??           00652         MOVWF   (_intro_letra_3_1_15 + 10), B
+000290 0E06           00653         MOVLW   0x06
+000292 ????           00654         BANKSEL (_intro_letra_3_1_15 + 11)
+000294 6F??           00655         MOVWF   (_intro_letra_3_1_15 + 11), B
+000296 0E04           00656         MOVLW   0x04
+000298 ????           00657         BANKSEL (_intro_letra_3_1_15 + 12)
+00029A 6F??           00658         MOVWF   (_intro_letra_3_1_15 + 12), B
+00029C 0E0C           00659         MOVLW   0x0c
+00029E ????           00660         BANKSEL (_intro_letra_3_1_15 + 13)
+0002A0 6F??           00661         MOVWF   (_intro_letra_3_1_15 + 13), B
+0002A2 0E08           00662         MOVLW   0x08
+0002A4 ????           00663         BANKSEL (_intro_letra_3_1_15 + 14)
+0002A6 6F??           00664         MOVWF   (_intro_letra_3_1_15 + 14), B
+0002A8 0E10           00665         MOVLW   0x10
+0002AA ????           00666         BANKSEL (_intro_letra_3_1_15 + 15)
+0002AC 6F??           00667         MOVWF   (_intro_letra_3_1_15 + 15), B
+0002AE ????           00668         BANKSEL (_intro_letra_3_1_15 + 16)
+0002B0 6B??           00669         CLRF    (_intro_letra_3_1_15 + 16), B
+0002B2 ????           00670         BANKSEL (_intro_letra_3_1_15 + 17)
+0002B4 6B??           00671         CLRF    (_intro_letra_3_1_15 + 17), B
+0002B6 ????           00672         BANKSEL (_intro_letra_3_1_15 + 18)
+0002B8 6B??           00673         CLRF    (_intro_letra_3_1_15 + 18), B
+0002BA ????           00674         BANKSEL (_intro_letra_3_1_15 + 19)
+0002BC 6B??           00675         CLRF    (_intro_letra_3_1_15 + 19), B
+0002BE ????           00676         BANKSEL (_intro_letra_3_1_15 + 20)
+0002C0 6B??           00677         CLRF    (_intro_letra_3_1_15 + 20), B
+0002C2 0E08           00678         MOVLW   0x08
+0002C4 ????           00679         BANKSEL (_intro_letra_3_1_15 + 21)
+0002C6 6F??           00680         MOVWF   (_intro_letra_3_1_15 + 21), B
+0002C8 0E08           00681         MOVLW   0x08
+0002CA ????           00682         BANKSEL (_intro_letra_3_1_15 + 22)
+0002CC 6F??           00683         MOVWF   (_intro_letra_3_1_15 + 22), B
+0002CE 0E07           00684         MOVLW   0x07
+0002D0 ????           00685         BANKSEL (_intro_letra_3_1_15 + 23)
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0002D2 6F??           00686         MOVWF   (_intro_letra_3_1_15 + 23), B
+0002D4 0E18           00687         MOVLW   0x18
+0002D6 ????           00688         BANKSEL (_intro_letra_3_1_15 + 24)
+0002D8 6F??           00689         MOVWF   (_intro_letra_3_1_15 + 24), B
+0002DA 0E0C           00690         MOVLW   0x0c
+0002DC ????           00691         BANKSEL (_intro_letra_3_1_15 + 25)
+0002DE 6F??           00692         MOVWF   (_intro_letra_3_1_15 + 25), B
+0002E0 0E03           00693         MOVLW   0x03
+0002E2 ????           00694         BANKSEL (_intro_letra_3_1_15 + 26)
+0002E4 6F??           00695         MOVWF   (_intro_letra_3_1_15 + 26), B
+0002E6 0E03           00696         MOVLW   0x03
+0002E8 ????           00697         BANKSEL (_intro_letra_3_1_15 + 27)
+0002EA 6F??           00698         MOVWF   (_intro_letra_3_1_15 + 27), B
+0002EC 0E01           00699         MOVLW   0x01
+0002EE ????           00700         BANKSEL (_intro_letra_3_1_15 + 28)
+0002F0 6F??           00701         MOVWF   (_intro_letra_3_1_15 + 28), B
+0002F2 0E02           00702         MOVLW   0x02
+0002F4 ????           00703         BANKSEL (_intro_letra_3_1_15 + 29)
+0002F6 6F??           00704         MOVWF   (_intro_letra_3_1_15 + 29), B
+0002F8 0E0C           00705         MOVLW   0x0c
+0002FA ????           00706         BANKSEL (_intro_letra_3_1_15 + 30)
+0002FC 6F??           00707         MOVWF   (_intro_letra_3_1_15 + 30), B
+0002FE 0E18           00708         MOVLW   0x18
+000300 ????           00709         BANKSEL (_intro_letra_3_1_15 + 31)
+000302 6F??           00710         MOVWF   (_intro_letra_3_1_15 + 31), B
+000304 ????           00711         BANKSEL _intro_letra_0_1_15
+                      00712 ;       .line   43; intro.c     char letra_0[4][8] = {{{0b00000000}, {0b00000001}, {0b00000011}, {0b0000
+                            0010},
+000306 6B??           00713         CLRF    _intro_letra_0_1_15, B
+000308 0E01           00714         MOVLW   0x01
+00030A ????           00715         BANKSEL (_intro_letra_0_1_15 + 1)
+00030C 6F??           00716         MOVWF   (_intro_letra_0_1_15 + 1), B
+00030E 0E03           00717         MOVLW   0x03
+000310 ????           00718         BANKSEL (_intro_letra_0_1_15 + 2)
+000312 6F??           00719         MOVWF   (_intro_letra_0_1_15 + 2), B
+000314 0E02           00720         MOVLW   0x02
+000316 ????           00721         BANKSEL (_intro_letra_0_1_15 + 3)
+000318 6F??           00722         MOVWF   (_intro_letra_0_1_15 + 3), B
+00031A 0E06           00723         MOVLW   0x06
+00031C ????           00724         BANKSEL (_intro_letra_0_1_15 + 4)
+00031E 6F??           00725         MOVWF   (_intro_letra_0_1_15 + 4), B
+000320 0E04           00726         MOVLW   0x04
+000322 ????           00727         BANKSEL (_intro_letra_0_1_15 + 5)
+000324 6F??           00728         MOVWF   (_intro_letra_0_1_15 + 5), B
+000326 0E04           00729         MOVLW   0x04
+000328 ????           00730         BANKSEL (_intro_letra_0_1_15 + 6)
+00032A 6F??           00731         MOVWF   (_intro_letra_0_1_15 + 6), B
+00032C 0E04           00732         MOVLW   0x04
+00032E ????           00733         BANKSEL (_intro_letra_0_1_15 + 7)
+000330 6F??           00734         MOVWF   (_intro_letra_0_1_15 + 7), B
+000332 ????           00735         BANKSEL (_intro_letra_0_1_15 + 8)
+000334 6B??           00736         CLRF    (_intro_letra_0_1_15 + 8), B
+000336 0E18           00737         MOVLW   0x18
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000338 ????           00738         BANKSEL (_intro_letra_0_1_15 + 9)
+00033A 6F??           00739         MOVWF   (_intro_letra_0_1_15 + 9), B
+00033C 0E0E           00740         MOVLW   0x0e
+00033E ????           00741         BANKSEL (_intro_letra_0_1_15 + 10)
+000340 6F??           00742         MOVWF   (_intro_letra_0_1_15 + 10), B
+000342 0E06           00743         MOVLW   0x06
+000344 ????           00744         BANKSEL (_intro_letra_0_1_15 + 11)
+000346 6F??           00745         MOVWF   (_intro_letra_0_1_15 + 11), B
+000348 0E06           00746         MOVLW   0x06
+00034A ????           00747         BANKSEL (_intro_letra_0_1_15 + 12)
+00034C 6F??           00748         MOVWF   (_intro_letra_0_1_15 + 12), B
+00034E 0E06           00749         MOVLW   0x06
+000350 ????           00750         BANKSEL (_intro_letra_0_1_15 + 13)
+000352 6F??           00751         MOVWF   (_intro_letra_0_1_15 + 13), B
+000354 0E06           00752         MOVLW   0x06
+000356 ????           00753         BANKSEL (_intro_letra_0_1_15 + 14)
+000358 6F??           00754         MOVWF   (_intro_letra_0_1_15 + 14), B
+00035A 0E06           00755         MOVLW   0x06
+00035C ????           00756         BANKSEL (_intro_letra_0_1_15 + 15)
+00035E 6F??           00757         MOVWF   (_intro_letra_0_1_15 + 15), B
+000360 0E04           00758         MOVLW   0x04
+000362 ????           00759         BANKSEL (_intro_letra_0_1_15 + 16)
+000364 6F??           00760         MOVWF   (_intro_letra_0_1_15 + 16), B
+000366 0E04           00761         MOVLW   0x04
+000368 ????           00762         BANKSEL (_intro_letra_0_1_15 + 17)
+00036A 6F??           00763         MOVWF   (_intro_letra_0_1_15 + 17), B
+00036C 0E04           00764         MOVLW   0x04
+00036E ????           00765         BANKSEL (_intro_letra_0_1_15 + 18)
+000370 6F??           00766         MOVWF   (_intro_letra_0_1_15 + 18), B
+000372 0E04           00767         MOVLW   0x04
+000374 ????           00768         BANKSEL (_intro_letra_0_1_15 + 19)
+000376 6F??           00769         MOVWF   (_intro_letra_0_1_15 + 19), B
+000378 0E04           00770         MOVLW   0x04
+00037A ????           00771         BANKSEL (_intro_letra_0_1_15 + 20)
+00037C 6F??           00772         MOVWF   (_intro_letra_0_1_15 + 20), B
+00037E 0E06           00773         MOVLW   0x06
+000380 ????           00774         BANKSEL (_intro_letra_0_1_15 + 21)
+000382 6F??           00775         MOVWF   (_intro_letra_0_1_15 + 21), B
+000384 0E03           00776         MOVLW   0x03
+000386 ????           00777         BANKSEL (_intro_letra_0_1_15 + 22)
+000388 6F??           00778         MOVWF   (_intro_letra_0_1_15 + 22), B
+00038A ????           00779         BANKSEL (_intro_letra_0_1_15 + 23)
+00038C 6B??           00780         CLRF    (_intro_letra_0_1_15 + 23), B
+00038E 0E06           00781         MOVLW   0x06
+000390 ????           00782         BANKSEL (_intro_letra_0_1_15 + 24)
+000392 6F??           00783         MOVWF   (_intro_letra_0_1_15 + 24), B
+000394 0E06           00784         MOVLW   0x06
+000396 ????           00785         BANKSEL (_intro_letra_0_1_15 + 25)
+000398 6F??           00786         MOVWF   (_intro_letra_0_1_15 + 25), B
+00039A 0E06           00787         MOVLW   0x06
+00039C ????           00788         BANKSEL (_intro_letra_0_1_15 + 26)
+00039E 6F??           00789         MOVWF   (_intro_letra_0_1_15 + 26), B
+0003A0 0E06           00790         MOVLW   0x06
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0003A2 ????           00791         BANKSEL (_intro_letra_0_1_15 + 27)
+0003A4 6F??           00792         MOVWF   (_intro_letra_0_1_15 + 27), B
+0003A6 0E0C           00793         MOVLW   0x0c
+0003A8 ????           00794         BANKSEL (_intro_letra_0_1_15 + 28)
+0003AA 6F??           00795         MOVWF   (_intro_letra_0_1_15 + 28), B
+0003AC 0E0C           00796         MOVLW   0x0c
+0003AE ????           00797         BANKSEL (_intro_letra_0_1_15 + 29)
+0003B0 6F??           00798         MOVWF   (_intro_letra_0_1_15 + 29), B
+0003B2 0E1C           00799         MOVLW   0x1c
+0003B4 ????           00800         BANKSEL (_intro_letra_0_1_15 + 30)
+0003B6 6F??           00801         MOVWF   (_intro_letra_0_1_15 + 30), B
+0003B8 ????           00802         BANKSEL (_intro_letra_0_1_15 + 31)
+0003BA 6B??           00803         CLRF    (_intro_letra_0_1_15 + 31), B
+0003BC ????           00804         BANKSEL _intro_letra_z_1_15
+                      00805 ;       .line   52; intro.c     char letra_z[4][8] = {{{0b00000000}, {0b00001111}, {0b00001111}, {0b0000
+                            0000},
+0003BE 6B??           00806         CLRF    _intro_letra_z_1_15, B
+0003C0 0E0F           00807         MOVLW   0x0f
+0003C2 ????           00808         BANKSEL (_intro_letra_z_1_15 + 1)
+0003C4 6F??           00809         MOVWF   (_intro_letra_z_1_15 + 1), B
+0003C6 0E0F           00810         MOVLW   0x0f
+0003C8 ????           00811         BANKSEL (_intro_letra_z_1_15 + 2)
+0003CA 6F??           00812         MOVWF   (_intro_letra_z_1_15 + 2), B
+0003CC ????           00813         BANKSEL (_intro_letra_z_1_15 + 3)
+0003CE 6B??           00814         CLRF    (_intro_letra_z_1_15 + 3), B
+0003D0 ????           00815         BANKSEL (_intro_letra_z_1_15 + 4)
+0003D2 6B??           00816         CLRF    (_intro_letra_z_1_15 + 4), B
+0003D4 ????           00817         BANKSEL (_intro_letra_z_1_15 + 5)
+0003D6 6B??           00818         CLRF    (_intro_letra_z_1_15 + 5), B
+0003D8 ????           00819         BANKSEL (_intro_letra_z_1_15 + 6)
+0003DA 6B??           00820         CLRF    (_intro_letra_z_1_15 + 6), B
+0003DC ????           00821         BANKSEL (_intro_letra_z_1_15 + 7)
+0003DE 6B??           00822         CLRF    (_intro_letra_z_1_15 + 7), B
+0003E0 ????           00823         BANKSEL (_intro_letra_z_1_15 + 8)
+0003E2 6B??           00824         CLRF    (_intro_letra_z_1_15 + 8), B
+0003E4 0E0F           00825         MOVLW   0x0f
+0003E6 ????           00826         BANKSEL (_intro_letra_z_1_15 + 9)
+0003E8 6F??           00827         MOVWF   (_intro_letra_z_1_15 + 9), B
+0003EA 0E0F           00828         MOVLW   0x0f
+0003EC ????           00829         BANKSEL (_intro_letra_z_1_15 + 10)
+0003EE 6F??           00830         MOVWF   (_intro_letra_z_1_15 + 10), B
+0003F0 0E03           00831         MOVLW   0x03
+0003F2 ????           00832         BANKSEL (_intro_letra_z_1_15 + 11)
+0003F4 6F??           00833         MOVWF   (_intro_letra_z_1_15 + 11), B
+0003F6 0E06           00834         MOVLW   0x06
+0003F8 ????           00835         BANKSEL (_intro_letra_z_1_15 + 12)
+0003FA 6F??           00836         MOVWF   (_intro_letra_z_1_15 + 12), B
+0003FC 0E0C           00837         MOVLW   0x0c
+0003FE ????           00838         BANKSEL (_intro_letra_z_1_15 + 13)
+000400 6F??           00839         MOVWF   (_intro_letra_z_1_15 + 13), B
+000402 0E18           00840         MOVLW   0x18
+000404 ????           00841         BANKSEL (_intro_letra_z_1_15 + 14)
+000406 6F??           00842         MOVWF   (_intro_letra_z_1_15 + 14), B
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000408 0E10           00843         MOVLW   0x10
+00040A ????           00844         BANKSEL (_intro_letra_z_1_15 + 15)
+00040C 6F??           00845         MOVWF   (_intro_letra_z_1_15 + 15), B
+00040E 0E03           00846         MOVLW   0x03
+000410 ????           00847         BANKSEL (_intro_letra_z_1_15 + 16)
+000412 6F??           00848         MOVWF   (_intro_letra_z_1_15 + 16), B
+000414 0E02           00849         MOVLW   0x02
+000416 ????           00850         BANKSEL (_intro_letra_z_1_15 + 17)
+000418 6F??           00851         MOVWF   (_intro_letra_z_1_15 + 17), B
+00041A 0E06           00852         MOVLW   0x06
+00041C ????           00853         BANKSEL (_intro_letra_z_1_15 + 18)
+00041E 6F??           00854         MOVWF   (_intro_letra_z_1_15 + 18), B
+000420 0E0C           00855         MOVLW   0x0c
+000422 ????           00856         BANKSEL (_intro_letra_z_1_15 + 19)
+000424 6F??           00857         MOVWF   (_intro_letra_z_1_15 + 19), B
+000426 0E0C           00858         MOVLW   0x0c
+000428 ????           00859         BANKSEL (_intro_letra_z_1_15 + 20)
+00042A 6F??           00860         MOVWF   (_intro_letra_z_1_15 + 20), B
+00042C 0E18           00861         MOVLW   0x18
+00042E ????           00862         BANKSEL (_intro_letra_z_1_15 + 21)
+000430 6F??           00863         MOVWF   (_intro_letra_z_1_15 + 21), B
+000432 0E1F           00864         MOVLW   0x1f
+000434 ????           00865         BANKSEL (_intro_letra_z_1_15 + 22)
+000436 6F??           00866         MOVWF   (_intro_letra_z_1_15 + 22), B
+000438 0E1F           00867         MOVLW   0x1f
+00043A ????           00868         BANKSEL (_intro_letra_z_1_15 + 23)
+00043C 6F??           00869         MOVWF   (_intro_letra_z_1_15 + 23), B
+00043E ????           00870         BANKSEL (_intro_letra_z_1_15 + 24)
+000440 6B??           00871         CLRF    (_intro_letra_z_1_15 + 24), B
+000442 ????           00872         BANKSEL (_intro_letra_z_1_15 + 25)
+000444 6B??           00873         CLRF    (_intro_letra_z_1_15 + 25), B
+000446 ????           00874         BANKSEL (_intro_letra_z_1_15 + 26)
+000448 6B??           00875         CLRF    (_intro_letra_z_1_15 + 26), B
+00044A ????           00876         BANKSEL (_intro_letra_z_1_15 + 27)
+00044C 6B??           00877         CLRF    (_intro_letra_z_1_15 + 27), B
+00044E ????           00878         BANKSEL (_intro_letra_z_1_15 + 28)
+000450 6B??           00879         CLRF    (_intro_letra_z_1_15 + 28), B
+000452 ????           00880         BANKSEL (_intro_letra_z_1_15 + 29)
+000454 6B??           00881         CLRF    (_intro_letra_z_1_15 + 29), B
+000456 0E1F           00882         MOVLW   0x1f
+000458 ????           00883         BANKSEL (_intro_letra_z_1_15 + 30)
+00045A 6F??           00884         MOVWF   (_intro_letra_z_1_15 + 30), B
+00045C 0E1F           00885         MOVLW   0x1f
+00045E ????           00886         BANKSEL (_intro_letra_z_1_15 + 31)
+000460 6F??           00887         MOVWF   (_intro_letra_z_1_15 + 31), B
+                      00888 ;       .line   61; intro.c     unsigned int i=0;
+000462 6A??           00889         CLRF    r0x00
+000464 6A??           00890         CLRF    r0x01
+                      00891 ;       .line   67; intro.c     for (x=0; x<100; x++) {
+000466 6A??           00892         CLRF    r0x02
+000468                00893 _00152_DS_:
+                      00894 ;       .line   68; intro.c     for (delay=0; delay<20000; delay++);
+000468 0E20           00895         MOVLW   0x20
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00046A 6E??           00896         MOVWF   r0x03
+00046C 0E4E           00897         MOVLW   0x4e
+00046E 6E??           00898         MOVWF   r0x04
+000470                00899 _00131_DS_:
+000470 0EFF           00900         MOVLW   0xff
+000472 26??           00901         ADDWF   r0x03, F
+000474 22??           00902         ADDWFC  r0x04, F
+000476 50??           00903         MOVF    r0x03, W
+000478 10??           00904         IORWF   r0x04, W
+00047A E1??           00905         BNZ     _00131_DS_
+                      00906 ;       .line   69; intro.c     limpa_lcd();
+00047C EC?? F0??      00907         CALL    _limpa_lcd
+                      00908 ;       .line   70; intro.c     envia_comando(0x40);
+000480 0E40           00909         MOVLW   0x40
+000482 6EE5           00910         MOVWF   POSTDEC1
+000484 EC?? F0??      00911         CALL    _envia_comando
+000488 52E6           00912         MOVF    POSTINC1, F
+                      00913 ;       .line   71; intro.c     switch (i) {
+00048A 0E00           00914         MOVLW   0x00
+00048C 5C??           00915         SUBWF   r0x01, W
+00048E E1??           00916         BNZ     _00231_DS_
+000490 0E04           00917         MOVLW   0x04
+000492 5C??           00918         SUBWF   r0x00, W
+000494                00919 _00231_DS_:
+000494 B0D8           00920         BTFSC   STATUS, 0
+000496 EF?? F0??      00921         GOTO    _00149_DS_
+00049A 6AFA           00922         CLRF    PCLATH
+00049C 6AFB           00923         CLRF    PCLATU
+00049E 34??           00924         RLCF    r0x00, W
+0004A0 36FA           00925         RLCF    PCLATH, F
+0004A2 34E8           00926         RLCF    WREG, W
+0004A4 36FA           00927         RLCF    PCLATH, F
+0004A6 0BFC           00928         ANDLW   0xfc
+0004A8 0F??           00929         ADDLW   LOW(_00232_DS_)
+0004AA 6EE5           00930         MOVWF   POSTDEC1
+0004AC 0E??           00931         MOVLW   HIGH(_00232_DS_)
+0004AE 22FA           00932         ADDWFC  PCLATH, F
+0004B0 0E??           00933         MOVLW   UPPER(_00232_DS_)
+0004B2 22FB           00934         ADDWFC  PCLATU, F
+0004B4 50E4           00935         MOVF    PREINC1, W
+0004B6 6EF9           00936         MOVWF   PCL
+0004B8                00937 _00232_DS_:
+0004B8 EF?? F0??      00938         GOTO    _00106_DS_
+0004BC EF?? F0??      00939         GOTO    _00112_DS_
+0004C0 EF?? F0??      00940         GOTO    _00118_DS_
+0004C4 EF?? F0??      00941         GOTO    _00121_DS_
+0004C8                00942 _00106_DS_:
+                      00943 ;       .line   73; intro.c     for (j=0; j<8; j++) {
+0004C8 6A??           00944         CLRF    r0x03
+0004CA 6A??           00945         CLRF    r0x04
+0004CC 6A??           00946         CLRF    r0x05
+0004CE                00947 _00156_DS_:
+                      00948 ;       .line   74; intro.c     for (k=0; k<8; k++) {
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0004CE 0EFC           00949         MOVLW   0xfc
+0004D0 24??           00950         ADDWF   r0x03, W
+0004D2 6E??           00951         MOVWF   r0x06
+                      00952 ; ;multiply lit val:0x08 by variable r0x06 and store in r0x06
+0004D4 50??           00953         MOVF    r0x06, W
+0004D6 0D08           00954         MULLW   0x08
+0004D8 50F4           00955         MOVF    PRODH, W
+0004DA 6E??           00956         MOVWF   r0x07
+0004DC CFF3 F000      00957         MOVFF   PRODL, r0x06
+0004E0 0E??           00958         MOVLW   LOW(_intro_letra_l_1_15)
+0004E2 26??           00959         ADDWF   r0x06, F
+0004E4 0E??           00960         MOVLW   HIGH(_intro_letra_l_1_15)
+0004E6 22??           00961         ADDWFC  r0x07, F
+0004E8 0E??           00962         MOVLW   LOW(_intro_letra_a_1_15)
+0004EA 24??           00963         ADDWF   r0x04, W
+0004EC 6E??           00964         MOVWF   r0x08
+0004EE 0E??           00965         MOVLW   HIGH(_intro_letra_a_1_15)
+0004F0 20??           00966         ADDWFC  r0x05, W
+0004F2 6E??           00967         MOVWF   r0x09
+0004F4 0E04           00968         MOVLW   0x04
+0004F6 5C??           00969         SUBWF   r0x03, W
+0004F8 70D8           00970         BTG     STATUS, 0
+0004FA 6A??           00971         CLRF    r0x0a
+0004FC 36??           00972         RLCF    r0x0a, F
+0004FE 6A??           00973         CLRF    r0x0b
+000500                00974 _00132_DS_:
+                      00975 ;       .line   75; intro.c     if (j < 4)
+000500 50??           00976         MOVF    r0x0a, W
+000502 E0??           00977         BZ      _00108_DS_
+                      00978 ;       .line   76; intro.c     envia_dados(letra_a[j][k]);
+000504 50??           00979         MOVF    r0x0b, W
+000506 24??           00980         ADDWF   r0x08, W
+000508 6E??           00981         MOVWF   r0x0c
+00050A 6AE8           00982         CLRF    WREG
+00050C 20??           00983         ADDWFC  r0x09, W
+00050E 6E??           00984         MOVWF   r0x0d
+000510 C??? F???      00985         MOVFF   r0x0c, FSR0L
+000514 C??? F???      00986         MOVFF   r0x0d, FSR0H
+000518 CFEF F000      00987         MOVFF   INDF0, r0x0c
+00051C 50??           00988         MOVF    r0x0c, W
+00051E 6EE5           00989         MOVWF   POSTDEC1
+000520 EC?? F0??      00990         CALL    _envia_dados
+000524 52E6           00991         MOVF    POSTINC1, F
+000526 D???           00992         BRA     _00133_DS_
+000528                00993 _00108_DS_:
+                      00994 ;       .line   78; intro.c     envia_dados(letra_l[j-4][k]);
+000528 50??           00995         MOVF    r0x0b, W
+00052A 24??           00996         ADDWF   r0x06, W
+00052C 6E??           00997         MOVWF   r0x0c
+00052E 6AE8           00998         CLRF    WREG
+000530 20??           00999         ADDWFC  r0x07, W
+000532 6E??           01000         MOVWF   r0x0d
+000534 C??? F???      01001         MOVFF   r0x0c, FSR0L
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000538 C??? F???      01002         MOVFF   r0x0d, FSR0H
+00053C CFEF F000      01003         MOVFF   INDF0, r0x0c
+000540 50??           01004         MOVF    r0x0c, W
+000542 6EE5           01005         MOVWF   POSTDEC1
+000544 EC?? F0??      01006         CALL    _envia_dados
+000548 52E6           01007         MOVF    POSTINC1, F
+00054A                01008 _00133_DS_:
+                      01009 ;       .line   74; intro.c     for (k=0; k<8; k++) {
+00054A 2A??           01010         INCF    r0x0b, F
+00054C 0E08           01011         MOVLW   0x08
+00054E 5C??           01012         SUBWF   r0x0b, W
+000550 E3??           01013         BNC     _00132_DS_
+                      01014 ;       .line   73; intro.c     for (j=0; j<8; j++) {
+000552 0E08           01015         MOVLW   0x08
+000554 26??           01016         ADDWF   r0x04, F
+000556 B0D8           01017         BTFSC   STATUS, 0
+000558 2A??           01018         INCF    r0x05, F
+00055A 2A??           01019         INCF    r0x03, F
+00055C 0E08           01020         MOVLW   0x08
+00055E 5C??           01021         SUBWF   r0x03, W
+000560 A0D8           01022         BTFSS   STATUS, 0
+000562 D???           01023         BRA     _00156_DS_
+                      01024 ;       .line   81; intro.c     envia_comando(0x80);
+000564 0E80           01025         MOVLW   0x80
+000566 6EE5           01026         MOVWF   POSTDEC1
+000568 EC?? F0??      01027         CALL    _envia_comando
+00056C 52E6           01028         MOVF    POSTINC1, F
+                      01029 ;       .line   82; intro.c     envia_dados(0x00);
+00056E 0E00           01030         MOVLW   0x00
+000570 6EE5           01031         MOVWF   POSTDEC1
+000572 EC?? F0??      01032         CALL    _envia_dados
+000576 52E6           01033         MOVF    POSTINC1, F
+                      01034 ;       .line   83; intro.c     envia_dados(0x01);
+000578 0E01           01035         MOVLW   0x01
+00057A 6EE5           01036         MOVWF   POSTDEC1
+00057C EC?? F0??      01037         CALL    _envia_dados
+000580 52E6           01038         MOVF    POSTINC1, F
+                      01039 ;       .line   84; intro.c     envia_dados(0x04);
+000582 0E04           01040         MOVLW   0x04
+000584 6EE5           01041         MOVWF   POSTDEC1
+000586 EC?? F0??      01042         CALL    _envia_dados
+00058A 52E6           01043         MOVF    POSTINC1, F
+                      01044 ;       .line   85; intro.c     envia_dados(0x05);
+00058C 0E05           01045         MOVLW   0x05
+00058E 6EE5           01046         MOVWF   POSTDEC1
+000590 EC?? F0??      01047         CALL    _envia_dados
+000594 52E6           01048         MOVF    POSTINC1, F
+                      01049 ;       .line   86; intro.c     envia_comando(0xC0);
+000596 0EC0           01050         MOVLW   0xc0
+000598 6EE5           01051         MOVWF   POSTDEC1
+00059A EC?? F0??      01052         CALL    _envia_comando
+00059E 52E6           01053         MOVF    POSTINC1, F
+                      01054 ;       .line   87; intro.c     envia_dados(0x02);
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0005A0 0E02           01055         MOVLW   0x02
+0005A2 6EE5           01056         MOVWF   POSTDEC1
+0005A4 EC?? F0??      01057         CALL    _envia_dados
+0005A8 52E6           01058         MOVF    POSTINC1, F
+                      01059 ;       .line   88; intro.c     envia_dados(0x03);
+0005AA 0E03           01060         MOVLW   0x03
+0005AC 6EE5           01061         MOVWF   POSTDEC1
+0005AE EC?? F0??      01062         CALL    _envia_dados
+0005B2 52E6           01063         MOVF    POSTINC1, F
+                      01064 ;       .line   89; intro.c     envia_dados(0x06);
+0005B4 0E06           01065         MOVLW   0x06
+0005B6 6EE5           01066         MOVWF   POSTDEC1
+0005B8 EC?? F0??      01067         CALL    _envia_dados
+0005BC 52E6           01068         MOVF    POSTINC1, F
+                      01069 ;       .line   90; intro.c     envia_dados(0x07);
+0005BE 0E07           01070         MOVLW   0x07
+0005C0 6EE5           01071         MOVWF   POSTDEC1
+0005C2 EC?? F0??      01072         CALL    _envia_dados
+0005C6 52E6           01073         MOVF    POSTINC1, F
+                      01074 ;       .line   91; intro.c     i=1;
+0005C8 0E01           01075         MOVLW   0x01
+0005CA 6E??           01076         MOVWF   r0x00
+0005CC 6A??           01077         CLRF    r0x01
+                      01078 ;       .line   92; intro.c     break;
+0005CE D???           01079         BRA     _00149_DS_
+0005D0                01080 _00112_DS_:
+                      01081 ;       .line   94; intro.c     for (j=0; j<8; j++) {
+0005D0 6A??           01082         CLRF    r0x03
+0005D2 6A??           01083         CLRF    r0x04
+0005D4 6A??           01084         CLRF    r0x05
+0005D6                01085 _00161_DS_:
+                      01086 ;       .line   95; intro.c     for (k=0; k<8; k++) {
+0005D6 0EFC           01087         MOVLW   0xfc
+0005D8 24??           01088         ADDWF   r0x03, W
+0005DA 6E??           01089         MOVWF   r0x06
+                      01090 ; ;multiply lit val:0x08 by variable r0x06 and store in r0x06
+0005DC 50??           01091         MOVF    r0x06, W
+0005DE 0D08           01092         MULLW   0x08
+0005E0 50F4           01093         MOVF    PRODH, W
+0005E2 6E??           01094         MOVWF   r0x07
+0005E4 CFF3 F000      01095         MOVFF   PRODL, r0x06
+0005E8 0E??           01096         MOVLW   LOW(_intro_letra_3_1_15)
+0005EA 26??           01097         ADDWF   r0x06, F
+0005EC 0E??           01098         MOVLW   HIGH(_intro_letra_3_1_15)
+0005EE 22??           01099         ADDWFC  r0x07, F
+0005F0 0E??           01100         MOVLW   LOW(_intro_letra_r_1_15)
+0005F2 24??           01101         ADDWF   r0x04, W
+0005F4 6E??           01102         MOVWF   r0x08
+0005F6 0E??           01103         MOVLW   HIGH(_intro_letra_r_1_15)
+0005F8 20??           01104         ADDWFC  r0x05, W
+0005FA 6E??           01105         MOVWF   r0x09
+0005FC 0E04           01106         MOVLW   0x04
+0005FE 5C??           01107         SUBWF   r0x03, W
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000600 70D8           01108         BTG     STATUS, 0
+000602 6A??           01109         CLRF    r0x0a
+000604 36??           01110         RLCF    r0x0a, F
+000606 6A??           01111         CLRF    r0x0b
+000608                01112 _00136_DS_:
+                      01113 ;       .line   96; intro.c     if (j < 4)
+000608 50??           01114         MOVF    r0x0a, W
+00060A E0??           01115         BZ      _00114_DS_
+                      01116 ;       .line   97; intro.c     envia_dados(letra_r[j][k]);
+00060C 50??           01117         MOVF    r0x0b, W
+00060E 24??           01118         ADDWF   r0x08, W
+000610 6E??           01119         MOVWF   r0x0c
+000612 6AE8           01120         CLRF    WREG
+000614 20??           01121         ADDWFC  r0x09, W
+000616 6E??           01122         MOVWF   r0x0d
+000618 C??? F???      01123         MOVFF   r0x0c, FSR0L
+00061C C??? F???      01124         MOVFF   r0x0d, FSR0H
+000620 CFEF F000      01125         MOVFF   INDF0, r0x0c
+000624 50??           01126         MOVF    r0x0c, W
+000626 6EE5           01127         MOVWF   POSTDEC1
+000628 EC?? F0??      01128         CALL    _envia_dados
+00062C 52E6           01129         MOVF    POSTINC1, F
+00062E D???           01130         BRA     _00137_DS_
+000630                01131 _00114_DS_:
+                      01132 ;       .line   99; intro.c     envia_dados(letra_3[j-4][k]);
+000630 50??           01133         MOVF    r0x0b, W
+000632 24??           01134         ADDWF   r0x06, W
+000634 6E??           01135         MOVWF   r0x0c
+000636 6AE8           01136         CLRF    WREG
+000638 20??           01137         ADDWFC  r0x07, W
+00063A 6E??           01138         MOVWF   r0x0d
+00063C C??? F???      01139         MOVFF   r0x0c, FSR0L
+000640 C??? F???      01140         MOVFF   r0x0d, FSR0H
+000644 CFEF F000      01141         MOVFF   INDF0, r0x0c
+000648 50??           01142         MOVF    r0x0c, W
+00064A 6EE5           01143         MOVWF   POSTDEC1
+00064C EC?? F0??      01144         CALL    _envia_dados
+000650 52E6           01145         MOVF    POSTINC1, F
+000652                01146 _00137_DS_:
+                      01147 ;       .line   95; intro.c     for (k=0; k<8; k++) {
+000652 2A??           01148         INCF    r0x0b, F
+000654 0E08           01149         MOVLW   0x08
+000656 5C??           01150         SUBWF   r0x0b, W
+000658 E3??           01151         BNC     _00136_DS_
+                      01152 ;       .line   94; intro.c     for (j=0; j<8; j++) {
+00065A 0E08           01153         MOVLW   0x08
+00065C 26??           01154         ADDWF   r0x04, F
+00065E B0D8           01155         BTFSC   STATUS, 0
+000660 2A??           01156         INCF    r0x05, F
+000662 2A??           01157         INCF    r0x03, F
+000664 0E08           01158         MOVLW   0x08
+000666 5C??           01159         SUBWF   r0x03, W
+000668 A0D8           01160         BTFSS   STATUS, 0
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00066A D???           01161         BRA     _00161_DS_
+                      01162 ;       .line   102; intro.c    envia_comando(0x84);
+00066C 0E84           01163         MOVLW   0x84
+00066E 6EE5           01164         MOVWF   POSTDEC1
+000670 EC?? F0??      01165         CALL    _envia_comando
+000674 52E6           01166         MOVF    POSTINC1, F
+                      01167 ;       .line   103; intro.c    envia_dados(0x00);
+000676 0E00           01168         MOVLW   0x00
+000678 6EE5           01169         MOVWF   POSTDEC1
+00067A EC?? F0??      01170         CALL    _envia_dados
+00067E 52E6           01171         MOVF    POSTINC1, F
+                      01172 ;       .line   104; intro.c    envia_dados(0x01);
+000680 0E01           01173         MOVLW   0x01
+000682 6EE5           01174         MOVWF   POSTDEC1
+000684 EC?? F0??      01175         CALL    _envia_dados
+000688 52E6           01176         MOVF    POSTINC1, F
+                      01177 ;       .line   105; intro.c    envia_dados(0x04);
+00068A 0E04           01178         MOVLW   0x04
+00068C 6EE5           01179         MOVWF   POSTDEC1
+00068E EC?? F0??      01180         CALL    _envia_dados
+000692 52E6           01181         MOVF    POSTINC1, F
+                      01182 ;       .line   106; intro.c    envia_dados(0x05);
+000694 0E05           01183         MOVLW   0x05
+000696 6EE5           01184         MOVWF   POSTDEC1
+000698 EC?? F0??      01185         CALL    _envia_dados
+00069C 52E6           01186         MOVF    POSTINC1, F
+                      01187 ;       .line   107; intro.c    envia_comando(0xC4);
+00069E 0EC4           01188         MOVLW   0xc4
+0006A0 6EE5           01189         MOVWF   POSTDEC1
+0006A2 EC?? F0??      01190         CALL    _envia_comando
+0006A6 52E6           01191         MOVF    POSTINC1, F
+                      01192 ;       .line   108; intro.c    envia_dados(0x02);
+0006A8 0E02           01193         MOVLW   0x02
+0006AA 6EE5           01194         MOVWF   POSTDEC1
+0006AC EC?? F0??      01195         CALL    _envia_dados
+0006B0 52E6           01196         MOVF    POSTINC1, F
+                      01197 ;       .line   109; intro.c    envia_dados(0x03);
+0006B2 0E03           01198         MOVLW   0x03
+0006B4 6EE5           01199         MOVWF   POSTDEC1
+0006B6 EC?? F0??      01200         CALL    _envia_dados
+0006BA 52E6           01201         MOVF    POSTINC1, F
+                      01202 ;       .line   110; intro.c    envia_dados(0x06);
+0006BC 0E06           01203         MOVLW   0x06
+0006BE 6EE5           01204         MOVWF   POSTDEC1
+0006C0 EC?? F0??      01205         CALL    _envia_dados
+0006C4 52E6           01206         MOVF    POSTINC1, F
+                      01207 ;       .line   111; intro.c    envia_dados(0x07);
+0006C6 0E07           01208         MOVLW   0x07
+0006C8 6EE5           01209         MOVWF   POSTDEC1
+0006CA EC?? F0??      01210         CALL    _envia_dados
+0006CE 52E6           01211         MOVF    POSTINC1, F
+                      01212 ;       .line   112; intro.c    i=2;
+0006D0 0E02           01213         MOVLW   0x02
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0006D2 6E??           01214         MOVWF   r0x00
+0006D4 6A??           01215         CLRF    r0x01
+                      01216 ;       .line   113; intro.c    break;
+0006D6 D???           01217         BRA     _00149_DS_
+0006D8                01218 _00118_DS_:
+                      01219 ;       .line   115; intro.c    for (j=0; j<4; j++) {
+0006D8 6A??           01220         CLRF    r0x03
+0006DA 6A??           01221         CLRF    r0x04
+0006DC 6A??           01222         CLRF    r0x05
+0006DE                01223 _00165_DS_:
+                      01224 ;       .line   116; intro.c    for (k=0; k<8; k++) {
+0006DE 0E??           01225         MOVLW   LOW(_intro_letra_0_1_15)
+0006E0 24??           01226         ADDWF   r0x04, W
+0006E2 6E??           01227         MOVWF   r0x06
+0006E4 0E??           01228         MOVLW   HIGH(_intro_letra_0_1_15)
+0006E6 20??           01229         ADDWFC  r0x05, W
+0006E8 6E??           01230         MOVWF   r0x07
+0006EA 6A??           01231         CLRF    r0x08
+0006EC                01232 _00140_DS_:
+                      01233 ;       .line   117; intro.c    envia_dados(letra_0[j][k]);
+0006EC 50??           01234         MOVF    r0x08, W
+0006EE 24??           01235         ADDWF   r0x06, W
+0006F0 6E??           01236         MOVWF   r0x09
+0006F2 6AE8           01237         CLRF    WREG
+0006F4 20??           01238         ADDWFC  r0x07, W
+0006F6 6E??           01239         MOVWF   r0x0a
+0006F8 C??? F???      01240         MOVFF   r0x09, FSR0L
+0006FC C??? F???      01241         MOVFF   r0x0a, FSR0H
+000700 CFEF F000      01242         MOVFF   INDF0, r0x09
+000704 50??           01243         MOVF    r0x09, W
+000706 6EE5           01244         MOVWF   POSTDEC1
+000708 EC?? F0??      01245         CALL    _envia_dados
+00070C 52E6           01246         MOVF    POSTINC1, F
+                      01247 ;       .line   116; intro.c    for (k=0; k<8; k++) {
+00070E 2A??           01248         INCF    r0x08, F
+000710 0E08           01249         MOVLW   0x08
+000712 5C??           01250         SUBWF   r0x08, W
+000714 E3??           01251         BNC     _00140_DS_
+                      01252 ;       .line   115; intro.c    for (j=0; j<4; j++) {
+000716 0E08           01253         MOVLW   0x08
+000718 26??           01254         ADDWF   r0x04, F
+00071A B0D8           01255         BTFSC   STATUS, 0
+00071C 2A??           01256         INCF    r0x05, F
+00071E 2A??           01257         INCF    r0x03, F
+000720 0E04           01258         MOVLW   0x04
+000722 5C??           01259         SUBWF   r0x03, W
+000724 E3??           01260         BNC     _00165_DS_
+                      01261 ;       .line   120; intro.c    envia_comando(0x88);
+000726 0E88           01262         MOVLW   0x88
+000728 6EE5           01263         MOVWF   POSTDEC1
+00072A EC?? F0??      01264         CALL    _envia_comando
+00072E 52E6           01265         MOVF    POSTINC1, F
+                      01266 ;       .line   121; intro.c    envia_dados(0x00);
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000730 0E00           01267         MOVLW   0x00
+000732 6EE5           01268         MOVWF   POSTDEC1
+000734 EC?? F0??      01269         CALL    _envia_dados
+000738 52E6           01270         MOVF    POSTINC1, F
+                      01271 ;       .line   122; intro.c    envia_dados(0x01);
+00073A 0E01           01272         MOVLW   0x01
+00073C 6EE5           01273         MOVWF   POSTDEC1
+00073E EC?? F0??      01274         CALL    _envia_dados
+000742 52E6           01275         MOVF    POSTINC1, F
+                      01276 ;       .line   123; intro.c    envia_dados(0x00);
+000744 0E00           01277         MOVLW   0x00
+000746 6EE5           01278         MOVWF   POSTDEC1
+000748 EC?? F0??      01279         CALL    _envia_dados
+00074C 52E6           01280         MOVF    POSTINC1, F
+                      01281 ;       .line   124; intro.c    envia_dados(0x01);
+00074E 0E01           01282         MOVLW   0x01
+000750 6EE5           01283         MOVWF   POSTDEC1
+000752 EC?? F0??      01284         CALL    _envia_dados
+000756 52E6           01285         MOVF    POSTINC1, F
+                      01286 ;       .line   125; intro.c    envia_comando(0xC8);
+000758 0EC8           01287         MOVLW   0xc8
+00075A 6EE5           01288         MOVWF   POSTDEC1
+00075C EC?? F0??      01289         CALL    _envia_comando
+000760 52E6           01290         MOVF    POSTINC1, F
+                      01291 ;       .line   126; intro.c    envia_dados(0x02);
+000762 0E02           01292         MOVLW   0x02
+000764 6EE5           01293         MOVWF   POSTDEC1
+000766 EC?? F0??      01294         CALL    _envia_dados
+00076A 52E6           01295         MOVF    POSTINC1, F
+                      01296 ;       .line   127; intro.c    envia_dados(0x03);
+00076C 0E03           01297         MOVLW   0x03
+00076E 6EE5           01298         MOVWF   POSTDEC1
+000770 EC?? F0??      01299         CALL    _envia_dados
+000774 52E6           01300         MOVF    POSTINC1, F
+                      01301 ;       .line   128; intro.c    envia_dados(0x02);
+000776 0E02           01302         MOVLW   0x02
+000778 6EE5           01303         MOVWF   POSTDEC1
+00077A EC?? F0??      01304         CALL    _envia_dados
+00077E 52E6           01305         MOVF    POSTINC1, F
+                      01306 ;       .line   129; intro.c    envia_dados(0x03);
+000780 0E03           01307         MOVLW   0x03
+000782 6EE5           01308         MOVWF   POSTDEC1
+000784 EC?? F0??      01309         CALL    _envia_dados
+000788 52E6           01310         MOVF    POSTINC1, F
+                      01311 ;       .line   130; intro.c    i=3;
+00078A 0E03           01312         MOVLW   0x03
+00078C 6E??           01313         MOVWF   r0x00
+00078E 6A??           01314         CLRF    r0x01
+                      01315 ;       .line   131; intro.c    break;
+000790 D???           01316         BRA     _00149_DS_
+000792                01317 _00121_DS_:
+                      01318 ;       .line   133; intro.c    for (j=0; j<8; j++) {
+000792 6A??           01319         CLRF    r0x03
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000794 6A??           01320         CLRF    r0x04
+000796 6A??           01321         CLRF    r0x05
+000798                01322 _00170_DS_:
+                      01323 ;       .line   134; intro.c    for (k=0; k<8; k++) {
+000798 0EFC           01324         MOVLW   0xfc
+00079A 24??           01325         ADDWF   r0x03, W
+00079C 6E??           01326         MOVWF   r0x06
+                      01327 ; ;multiply lit val:0x08 by variable r0x06 and store in r0x06
+00079E 50??           01328         MOVF    r0x06, W
+0007A0 0D08           01329         MULLW   0x08
+0007A2 50F4           01330         MOVF    PRODH, W
+0007A4 6E??           01331         MOVWF   r0x07
+0007A6 CFF3 F000      01332         MOVFF   PRODL, r0x06
+0007AA 0E??           01333         MOVLW   LOW(_intro_letra_z_1_15)
+0007AC 26??           01334         ADDWF   r0x06, F
+0007AE 0E??           01335         MOVLW   HIGH(_intro_letra_z_1_15)
+0007B0 22??           01336         ADDWFC  r0x07, F
+0007B2 0E??           01337         MOVLW   LOW(_intro_letra_0_1_15)
+0007B4 24??           01338         ADDWF   r0x04, W
+0007B6 6E??           01339         MOVWF   r0x08
+0007B8 0E??           01340         MOVLW   HIGH(_intro_letra_0_1_15)
+0007BA 20??           01341         ADDWFC  r0x05, W
+0007BC 6E??           01342         MOVWF   r0x09
+0007BE 0E04           01343         MOVLW   0x04
+0007C0 5C??           01344         SUBWF   r0x03, W
+0007C2 70D8           01345         BTG     STATUS, 0
+0007C4 6A??           01346         CLRF    r0x0a
+0007C6 36??           01347         RLCF    r0x0a, F
+0007C8 6A??           01348         CLRF    r0x0b
+0007CA                01349 _00144_DS_:
+                      01350 ;       .line   135; intro.c    if (j < 4)
+0007CA 50??           01351         MOVF    r0x0a, W
+0007CC E0??           01352         BZ      _00123_DS_
+                      01353 ;       .line   136; intro.c    envia_dados(letra_0[j][k]);
+0007CE 50??           01354         MOVF    r0x0b, W
+0007D0 24??           01355         ADDWF   r0x08, W
+0007D2 6E??           01356         MOVWF   r0x0c
+0007D4 6AE8           01357         CLRF    WREG
+0007D6 20??           01358         ADDWFC  r0x09, W
+0007D8 6E??           01359         MOVWF   r0x0d
+0007DA C??? F???      01360         MOVFF   r0x0c, FSR0L
+0007DE C??? F???      01361         MOVFF   r0x0d, FSR0H
+0007E2 CFEF F000      01362         MOVFF   INDF0, r0x0c
+0007E6 50??           01363         MOVF    r0x0c, W
+0007E8 6EE5           01364         MOVWF   POSTDEC1
+0007EA EC?? F0??      01365         CALL    _envia_dados
+0007EE 52E6           01366         MOVF    POSTINC1, F
+0007F0 D???           01367         BRA     _00145_DS_
+0007F2                01368 _00123_DS_:
+                      01369 ;       .line   138; intro.c    envia_dados(letra_z[j-4][k]);
+0007F2 50??           01370         MOVF    r0x0b, W
+0007F4 24??           01371         ADDWF   r0x06, W
+0007F6 6E??           01372         MOVWF   r0x0c
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0007F8 6AE8           01373         CLRF    WREG
+0007FA 20??           01374         ADDWFC  r0x07, W
+0007FC 6E??           01375         MOVWF   r0x0d
+0007FE C??? F???      01376         MOVFF   r0x0c, FSR0L
+000802 C??? F???      01377         MOVFF   r0x0d, FSR0H
+000806 CFEF F000      01378         MOVFF   INDF0, r0x0c
+00080A 50??           01379         MOVF    r0x0c, W
+00080C 6EE5           01380         MOVWF   POSTDEC1
+00080E EC?? F0??      01381         CALL    _envia_dados
+000812 52E6           01382         MOVF    POSTINC1, F
+000814                01383 _00145_DS_:
+                      01384 ;       .line   134; intro.c    for (k=0; k<8; k++) {
+000814 2A??           01385         INCF    r0x0b, F
+000816 0E08           01386         MOVLW   0x08
+000818 5C??           01387         SUBWF   r0x0b, W
+00081A E3??           01388         BNC     _00144_DS_
+                      01389 ;       .line   133; intro.c    for (j=0; j<8; j++) {
+00081C 0E08           01390         MOVLW   0x08
+00081E 26??           01391         ADDWF   r0x04, F
+000820 B0D8           01392         BTFSC   STATUS, 0
+000822 2A??           01393         INCF    r0x05, F
+000824 2A??           01394         INCF    r0x03, F
+000826 0E08           01395         MOVLW   0x08
+000828 5C??           01396         SUBWF   r0x03, W
+00082A A0D8           01397         BTFSS   STATUS, 0
+00082C D???           01398         BRA     _00170_DS_
+                      01399 ;       .line   141; intro.c    envia_comando(0x8C);
+00082E 0E8C           01400         MOVLW   0x8c
+000830 6EE5           01401         MOVWF   POSTDEC1
+000832 EC?? F0??      01402         CALL    _envia_comando
+000836 52E6           01403         MOVF    POSTINC1, F
+                      01404 ;       .line   142; intro.c    envia_dados(0x00);
+000838 0E00           01405         MOVLW   0x00
+00083A 6EE5           01406         MOVWF   POSTDEC1
+00083C EC?? F0??      01407         CALL    _envia_dados
+000840 52E6           01408         MOVF    POSTINC1, F
+                      01409 ;       .line   143; intro.c    envia_dados(0x01);
+000842 0E01           01410         MOVLW   0x01
+000844 6EE5           01411         MOVWF   POSTDEC1
+000846 EC?? F0??      01412         CALL    _envia_dados
+00084A 52E6           01413         MOVF    POSTINC1, F
+                      01414 ;       .line   144; intro.c    envia_dados(0x04);
+00084C 0E04           01415         MOVLW   0x04
+00084E 6EE5           01416         MOVWF   POSTDEC1
+000850 EC?? F0??      01417         CALL    _envia_dados
+000854 52E6           01418         MOVF    POSTINC1, F
+                      01419 ;       .line   145; intro.c    envia_dados(0x05);
+000856 0E05           01420         MOVLW   0x05
+000858 6EE5           01421         MOVWF   POSTDEC1
+00085A EC?? F0??      01422         CALL    _envia_dados
+00085E 52E6           01423         MOVF    POSTINC1, F
+                      01424 ;       .line   146; intro.c    envia_comando(0xCC);
+000860 0ECC           01425         MOVLW   0xcc
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000862 6EE5           01426         MOVWF   POSTDEC1
+000864 EC?? F0??      01427         CALL    _envia_comando
+000868 52E6           01428         MOVF    POSTINC1, F
+                      01429 ;       .line   147; intro.c    envia_dados(0x02);
+00086A 0E02           01430         MOVLW   0x02
+00086C 6EE5           01431         MOVWF   POSTDEC1
+00086E EC?? F0??      01432         CALL    _envia_dados
+000872 52E6           01433         MOVF    POSTINC1, F
+                      01434 ;       .line   148; intro.c    envia_dados(0x03);
+000874 0E03           01435         MOVLW   0x03
+000876 6EE5           01436         MOVWF   POSTDEC1
+000878 EC?? F0??      01437         CALL    _envia_dados
+00087C 52E6           01438         MOVF    POSTINC1, F
+                      01439 ;       .line   149; intro.c    envia_dados(0x06);
+00087E 0E06           01440         MOVLW   0x06
+000880 6EE5           01441         MOVWF   POSTDEC1
+000882 EC?? F0??      01442         CALL    _envia_dados
+000886 52E6           01443         MOVF    POSTINC1, F
+                      01444 ;       .line   150; intro.c    envia_dados(0x07);
+000888 0E07           01445         MOVLW   0x07
+00088A 6EE5           01446         MOVWF   POSTDEC1
+00088C EC?? F0??      01447         CALL    _envia_dados
+000890 52E6           01448         MOVF    POSTINC1, F
+                      01449 ;       .line   151; intro.c    i=0;
+000892 6A??           01450         CLRF    r0x00
+000894 6A??           01451         CLRF    r0x01
+000896                01452 _00149_DS_:
+                      01453 ;       .line   67; intro.c     for (x=0; x<100; x++) {
+000896 2A??           01454         INCF    r0x02, F
+000898 0E64           01455         MOVLW   0x64
+00089A 5C??           01456         SUBWF   r0x02, W
+00089C A0D8           01457         BTFSS   STATUS, 0
+00089E EF?? F0??      01458         GOTO    _00152_DS_
+0008A2 CFE4 F000      01459         MOVFF   PREINC1, r0x0d
+0008A6 CFE4 F000      01460         MOVFF   PREINC1, r0x0c
+0008AA CFE4 F000      01461         MOVFF   PREINC1, r0x0b
+0008AE CFE4 F000      01462         MOVFF   PREINC1, r0x0a
+0008B2 CFE4 F000      01463         MOVFF   PREINC1, r0x09
+0008B6 CFE4 F000      01464         MOVFF   PREINC1, r0x08
+0008BA CFE4 F000      01465         MOVFF   PREINC1, r0x07
+0008BE CFE4 F000      01466         MOVFF   PREINC1, r0x06
+0008C2 CFE4 F000      01467         MOVFF   PREINC1, r0x05
+0008C6 CFE4 F000      01468         MOVFF   PREINC1, r0x04
+0008CA CFE4 F000      01469         MOVFF   PREINC1, r0x03
+0008CE CFE4 F000      01470         MOVFF   PREINC1, r0x02
+0008D2 CFE4 F000      01471         MOVFF   PREINC1, r0x01
+0008D6 CFE4 F000      01472         MOVFF   PREINC1, r0x00
+0008DA CFE4 FFD9      01473         MOVFF   PREINC1, FSR2L
+0008DE 0012           01474         RETURN  
+                      01475 
+                      01476 
+                      01477 
+                      01478 ; Statistics:
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      01479 ; code size:     2272 (0x08e0) bytes ( 1.73%)
+                      01480 ;                1136 (0x0470) words
+                      01481 ; udata size:     192 (0x00c0) bytes (10.71%)
+                      01482 ; access size:     14 (0x000e) bytes
+                      01483 
+                      01484 
+                      01485         end
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 30
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+INDF0                             00000FEF
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+POSTDEC1                          00000FE5
+POSTINC1                          00000FE6
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00106_DS_                        000004C8
+_00108_DS_                        00000528
+_00112_DS_                        000005D0
+_00114_DS_                        00000630
+_00118_DS_                        000006D8
+_00121_DS_                        00000792
+_00123_DS_                        000007F2
+_00131_DS_                        00000470
+_00132_DS_                        00000500
+_00133_DS_                        0000054A
+_00136_DS_                        00000608
+_00137_DS_                        00000652
+_00140_DS_                        000006EC
+_00144_DS_                        000007CA
+_00145_DS_                        00000814
+_00149_DS_                        00000896
+_00152_DS_                        00000468
+_00156_DS_                        000004CE
+_00161_DS_                        000005D6
+_00165_DS_                        000006DE
+_00170_DS_                        00000798
+_00231_DS_                        00000494
+_00232_DS_                        000004B8
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_BAUDCON                          00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1AS                           00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 31
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCP1ASbits                       00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP1DEL                          00000000
+_CCP1DELbits                      00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CMCON                            00000000
+_CMCONbits                        00000000
+_CVRCON                           00000000
+_CVRCONbits                       00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_DDRD                             00000000
+_DDRDbits                         00000000
+_DDRE                             00000000
+_DDREbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP1CON                         00000000
+_ECCP1CONbits                     00000000
+_ECCP1DEL                         00000000
+_ECCP1DELbits                     00000000
+_EEADR                            00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 32
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATD                             00000000
+_LATDbits                         00000000
+_LATE                             00000000
+_LATEbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_OSCCON                           00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTD                            00000000
+_PORTDbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 33
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PR2                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCSTA                            00000000
+_RCSTAbits                        00000000
+_SPBRG                            00000000
+_SPBRGH                           00000000
+_SPPCFG                           00000000
+_SPPCFGbits                       00000000
+_SPPCON                           00000000
+_SPPCONbits                       00000000
+_SPPDATA                          00000000
+_SPPEPS                           00000000
+_SPPEPSbits                       00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 34
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISD                            00000000
+_TRISDbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TXREG                            00000000
+_TXSTA                            00000000
+_TXSTAbits                        00000000
+_UADDR                            00000000
+_UADDRbits                        00000000
+_UCFG                             00000000
+_UCFGbits                         00000000
+_UCON                             00000000
+_UCONbits                         00000000
+_UEIE                             00000000
+_UEIEbits                         00000000
+_UEIR                             00000000
+_UEIRbits                         00000000
+_UEP0                             00000000
+_UEP0bits                         00000000
+_UEP1                             00000000
+_UEP10                            00000000
+_UEP10bits                        00000000
+_UEP11                            00000000
+_UEP11bits                        00000000
+_UEP12                            00000000
+_UEP12bits                        00000000
+_UEP13                            00000000
+_UEP13bits                        00000000
+_UEP14                            00000000
+_UEP14bits                        00000000
+_UEP15                            00000000
+_UEP15bits                        00000000
+_UEP1bits                         00000000
+_UEP2                             00000000
+_UEP2bits                         00000000
+_UEP3                             00000000
+_UEP3bits                         00000000
+_UEP4                             00000000
+_UEP4bits                         00000000
+_UEP5                             00000000
+gpasm-1.2.0 #980 (Jun  5 2013) build/default/   12-5-2013  11:22:30         PAGE 35
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_UEP5bits                         00000000
+_UEP6                             00000000
+_UEP6bits                         00000000
+_UEP7                             00000000
+_UEP7bits                         00000000
+_UEP8                             00000000
+_UEP8bits                         00000000
+_UEP9                             00000000
+_UEP9bits                         00000000
+_UFRM                             00000000
+_UFRMH                            00000000
+_UFRMHbits                        00000000
+_UFRML                            00000000
+_UFRMLbits                        00000000
+_UIE                              00000000
+_UIEbits                          00000000
+_UIR                              00000000
+_UIRbits                          00000000
+_USTAT                            00000000
+_USTATbits                        00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WREG                             00000000
+__18F4550                         00000001
+_envia_comando                    00000000
+_envia_dados                      00000000
+_intro                            00000000
+_intro_letra_0_1_15               00000000
+_intro_letra_3_1_15               00000000
+_intro_letra_a_1_15               00000000
+_intro_letra_l_1_15               00000000
+_intro_letra_r_1_15               00000000
+_intro_letra_z_1_15               00000000
+_limpa_lcd                        00000000
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+r0x06                             00000006
+r0x07                             00000007
+r0x08                             00000008
+r0x09                             00000009
+r0x0a                             0000000A
+r0x0b                             0000000B
+r0x0c                             0000000C
+r0x0d                             0000000D
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
