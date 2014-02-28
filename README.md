@@ -1,4 +1,5 @@
 Software was made in MPLABX IDE, using sdcc compiler.
+
 Hardware was made in Kicad.
 
 Features of the board and applications associated with it:
