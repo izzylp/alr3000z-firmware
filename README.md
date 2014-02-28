@@ -1,6 +1,7 @@
 This software was made in MPLABX IDE, using sdcc compiler.
+Hardware made in Kicad.
 
-Features:
+Features of the board and applications associated with it:
 
 - Buttons and serial interface;
 - LEDs, LCD;
