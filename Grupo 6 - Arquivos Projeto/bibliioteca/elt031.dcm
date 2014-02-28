@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0  Date: 24/03/2013 14:34:44
+#
+$CMP LCD_AGM-1602B
+D LCD de 16X2 pontos
+K AGM1602B
+$ENDCMP
+#
+#End Doc Library
